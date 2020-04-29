@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QtSql/QSqlDatabase>
+
+static bool createConnection() {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+}
 
 int main(int argc, char *argv[])
 {
