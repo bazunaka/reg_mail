@@ -26,13 +26,14 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
      <string>Принятые сообщения</string>
     </property>
+    <addaction name="actionvb"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -55,6 +56,11 @@
    <addaction name="menu_4"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionvb">
+   <property name="text">
+    <string>vb</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
