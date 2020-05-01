@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QtSql>
 #include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlQueryModel>
+#include <QtSql/QSqlQuery>
+#include <QSqlTableModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,7 +27,11 @@ private slots:
 
     void on_action_Qt_triggered();
 
+    void on_action_2_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db;
+    QSqlTableModel* model;
 };
 #endif // MAINWINDOW_H
