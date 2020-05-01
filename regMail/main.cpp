@@ -1,10 +1,17 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QtSql/QSqlDatabase>
+#include <QMenuBar>
+#include <QStatusBar>
 
 static bool createConnection() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    db.setHostName("localhost");
+    db.setDatabaseName("baz_mail");
+    db.setUserName("root");
+    db.setPassword("root");
+    db.open();
+    return true;
 }
 
 int main(int argc, char *argv[])
@@ -12,5 +19,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+    createConnection();
     return a.exec();
 }

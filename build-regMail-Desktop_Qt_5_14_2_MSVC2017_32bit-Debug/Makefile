@@ -257,6 +257,7 @@ Makefile: ..\regMail\regMail.pro C:\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qmake.
 		C:\Qt\5.14.2\msvc2017\mkspecs\features\qt_config.prf \
 		C:\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qmake.conf \
 		C:\Qt\5.14.2\msvc2017\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		C:\Qt\5.14.2\msvc2017\mkspecs\features\exclusive_builds.prf \
 		C:\Qt\5.14.2\msvc2017\mkspecs\common\msvc-version.conf \
 		C:\Qt\5.14.2\msvc2017\mkspecs\features\toolchain.prf \
@@ -284,12 +285,13 @@ Makefile: ..\regMail\regMail.pro C:\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qmake.
 		..\regMail\regMail.pro \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.prl \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.prl \
+		C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.prl \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Core.prl \
 		C:\Qt\5.14.2\msvc2017\lib\qtmain.prl \
-		.qmake.stash \
 		C:\Qt\5.14.2\msvc2017\mkspecs\features\build_pass.prf \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Widgetsd.prl \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Guid.prl \
+		C:\Qt\5.14.2\msvc2017\lib\Qt5Sqld.prl \
 		C:\Qt\5.14.2\msvc2017\lib\Qt5Cored.prl \
 		C:\Qt\5.14.2\msvc2017\lib\qtmaind.prl
 	$(QMAKE) -o Makefile ..\regMail\regMail.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -466,6 +468,7 @@ C:\Qt\5.14.2\msvc2017\mkspecs\features\qt_functions.prf:
 C:\Qt\5.14.2\msvc2017\mkspecs\features\qt_config.prf:
 C:\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qmake.conf:
 C:\Qt\5.14.2\msvc2017\mkspecs\features\spec_post.prf:
+.qmake.stash:
 C:\Qt\5.14.2\msvc2017\mkspecs\features\exclusive_builds.prf:
 C:\Qt\5.14.2\msvc2017\mkspecs\common\msvc-version.conf:
 C:\Qt\5.14.2\msvc2017\mkspecs\features\toolchain.prf:
@@ -493,12 +496,13 @@ C:\Qt\5.14.2\msvc2017\mkspecs\features\lex.prf:
 ..\regMail\regMail.pro:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.prl:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.prl:
+C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.prl:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Core.prl:
 C:\Qt\5.14.2\msvc2017\lib\qtmain.prl:
-.qmake.stash:
 C:\Qt\5.14.2\msvc2017\mkspecs\features\build_pass.prf:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Widgetsd.prl:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Guid.prl:
+C:\Qt\5.14.2\msvc2017\lib\Qt5Sqld.prl:
 C:\Qt\5.14.2\msvc2017\lib\Qt5Cored.prl:
 C:\Qt\5.14.2\msvc2017\lib\qtmaind.prl:
 qmake: FORCE
