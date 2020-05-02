@@ -27,9 +27,12 @@ public:
 private slots:
     void show_about();
 
-    void on_action_triggered();
+    void add_action_database();
 
-    void on_action_Qt_triggered();
+    void add_action_about();
+    void show_about_Qt();
+
+    void on_action_triggered();  
 
     void on_action_2_triggered();
 
@@ -45,7 +48,7 @@ private:
     QTableView *tbv;
     QStatusBar *stb;
     QMenuBar *mnb;
-    QMenu *mnu;
+    QMenu *mnu_db;
     QMenu *mnu_set;
     QMenu *mnu_ab;
 

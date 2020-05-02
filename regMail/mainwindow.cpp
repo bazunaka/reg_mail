@@ -12,16 +12,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     mnb = new QMenuBar(this);
 
-    mnu = new QMenu(tr("База данных"));
+    mnu_db = new QMenu(tr("База данных"));
     mnu_set = new QMenu(tr("Настройки"));
     mnu_ab = new QMenu(tr("Информация"));
 
-    mnb->addMenu(mnu);
+    mnb->addMenu(mnu_db);
     mnb->addMenu(mnu_set);
     mnb->addMenu(mnu_ab);
 
-    mnu_ab->addAction(tr("О программе..."));
-    mnu_ab->addAction(tr("О Qt"));
+    add_action_database();
+    add_action_about();
 
     tbv = new QTableView(this);
 
@@ -56,11 +56,6 @@ void MainWindow::on_action_triggered()
 {
     about* ab = new about();
     ab->show();
-}
-
-void MainWindow::on_action_Qt_triggered()
-{
-    QMessageBox::aboutQt(this);
 }
 
 void MainWindow::on_action_2_triggered()
@@ -99,7 +94,27 @@ void MainWindow::createContextMenu()
 
 }
 
+void MainWindow::add_action_database()
+{
+    mnu_db->addAction(tr("Отправленные сообщения"));
+    mnu_db->addAction(tr("Принятые сообщения"));
+}
+
+void MainWindow::add_action_about()
+{
+    QAction* ab_app_action = mnu_ab->addAction(tr("О программе..."));
+    connect(ab_app_action, SIGNAL(triggered()), this, SLOT(show_about()));
+    QAction* ab_qt_action = mnu_ab->addAction(tr("О Qt"));
+    connect(ab_qt_action, SIGNAL(triggered()), this, SLOT(on_action_Qt_triggered()));
+}
+
 void MainWindow::show_about()
 {
     QLabel lbl_about("qwerty!");
+    lbl_about.show();
+}
+
+void MainWindow::show_about_Qt()
+{
+    QMessageBox::aboutQt(this);
 }
