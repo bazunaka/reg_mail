@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="regMail_en_US">
+<TS version="2.1" language="en_US">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,37 +9,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="47"/>
-        <source>Отправленные сообщения</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="52"/>
-        <source>Принятые сообщения</source>
+        <source>Адреса</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="57"/>
-        <source>Справочники</source>
+        <source>Отправленные сообщения</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="62"/>
+        <source>Принятые сообщения</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="15"/>
+        <source>База данных</source>
+        <translatorcomment>Databases</translatorcomment>
+        <translation>Database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="16"/>
         <source>Настройки</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Settings application</translatorcomment>
+        <translation>Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="67"/>
+        <location filename="mainwindow.cpp" line="17"/>
         <source>О программе...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>About application</translatorcomment>
+        <translation>About...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="80"/>
+        <location filename="mainwindow.ui" line="42"/>
         <source>Информация о продукте</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="85"/>
+        <location filename="mainwindow.ui" line="47"/>
         <source>Информация о Qt</source>
         <translation type="unfinished"></translation>
     </message>

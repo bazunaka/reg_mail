@@ -10,7 +10,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    mnb = new QMenuBar(this);
+
+    mnu = new QMenu(tr("База данных"));
+    mnu_set = new QMenu(tr("Настройки"));
+    mnu_ab = new QMenu(tr("Информация"));
+
+    mnb->addMenu(mnu);
+    mnb->addMenu(mnu_set);
+    mnb->addMenu(mnu_ab);
+
+    mnu_ab->addAction(tr("О программе..."));
+    mnu_ab->addAction(tr("О Qt"));
+
     tbv = new QTableView(this);
+
+    ui->verticalLayout->addWidget(mnb);
     ui->verticalLayout->addWidget(tbv);
 
 
@@ -82,4 +97,9 @@ void MainWindow::on_action_4_triggered()
 void MainWindow::createContextMenu()
 {
 
+}
+
+void MainWindow::show_about()
+{
+    QLabel lbl_about("qwerty!");
 }

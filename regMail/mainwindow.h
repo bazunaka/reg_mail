@@ -8,7 +8,8 @@
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlQuery>
 #include <QSqlTableModel>
-#include <QTableView>
+#include <QtWidgets>
+#include <QtGui>
 #include <QMenu>
 
 QT_BEGIN_NAMESPACE
@@ -24,6 +25,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void show_about();
 
     void on_action_triggered();
 
@@ -39,7 +41,16 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     QTableView *tbv;
+    QStatusBar *stb;
+    QMenuBar *mnb;
+    QMenu *mnu;
+    QMenu *mnu_set;
+    QMenu *mnu_ab;
+
+    QAction *aboutAction;
+
     QSqlDatabase db;
     QSqlTableModel* model;
     QMenu* m_pmnu;
