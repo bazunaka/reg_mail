@@ -22,7 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
     } else {
         ui->statusbar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
         qDebug() << db.lastError();
-    }
+    }   
+
+    createContextMenu();
 
 }
 
@@ -50,6 +52,7 @@ void MainWindow::on_action_2_triggered()
     model->setTable("directory_view");
     model->select();
     ui->tableView->setModel(model);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void MainWindow::on_action_3_triggered()
@@ -70,4 +73,9 @@ void MainWindow::on_action_4_triggered()
     model->setTable("received_view");
     model->select();
     ui->tableView->setModel(model);
+}
+
+void MainWindow::createContextMenu()
+{
+
 }

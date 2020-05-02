@@ -8,6 +8,7 @@
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlQuery>
 #include <QSqlTableModel>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,9 +34,12 @@ private slots:
 
     void on_action_4_triggered();
 
+    void createContextMenu();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     QSqlTableModel* model;
+    QMenu* m_pmnu;
 };
 #endif // MAINWINDOW_H

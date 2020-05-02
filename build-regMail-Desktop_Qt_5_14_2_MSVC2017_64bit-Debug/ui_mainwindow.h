@@ -67,6 +67,8 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tableView = new QTableView(centralwidget);
         tableView->setObjectName(QString::fromUtf8("tableView"));
+        tableView->setEnabled(true);
+        tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 
         verticalLayout->addWidget(tableView);
 
