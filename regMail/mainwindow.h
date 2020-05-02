@@ -31,8 +31,9 @@ private slots:
 
     void add_action_about();
     void show_about_Qt();
+    void add_table_view();
 
-    void on_action_triggered();  
+    void database_connection();
 
     void on_action_2_triggered();
 
@@ -49,6 +50,7 @@ private:
     QStatusBar *stb;
     QMenuBar *mnb;
     QMenu *mnu_db;
+    QMenu *mnu_dir;
     QMenu *mnu_set;
     QMenu *mnu_ab;
 

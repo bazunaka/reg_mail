@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "about.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -13,35 +12,20 @@ MainWindow::MainWindow(QWidget *parent)
     mnb = new QMenuBar(this);
 
     mnu_db = new QMenu(tr("База данных"));
+    mnu_dir = new QMenu(tr("Справочник"));
     mnu_set = new QMenu(tr("Настройки"));
     mnu_ab = new QMenu(tr("Информация"));
 
     mnb->addMenu(mnu_db);
+    mnb->addMenu(mnu_dir);
     mnb->addMenu(mnu_set);
     mnb->addMenu(mnu_ab);
 
     add_action_database();
     add_action_about();
+    add_table_view();
 
-    tbv = new QTableView(this);
-
-    ui->verticalLayout->addWidget(mnb);
-    ui->verticalLayout->addWidget(tbv);
-
-
-    db = QSqlDatabase::addDatabase("QODBC");
-    db.setHostName("localhost");
-    db.setDatabaseName("DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;");
-    db.setUserName("root");
-    db.setPassword("root");
-    if (db.open())
-    {
-        ui->statusbar->showMessage("Подключение успешно!");
-        return;
-    } else {
-        ui->statusbar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
-        qDebug() << db.lastError();
-    }   
+    database_connection();
 
     createContextMenu();
 
@@ -52,10 +36,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_action_triggered()
+void MainWindow::database_connection()
 {
-    about* ab = new about();
-    ab->show();
+    db = QSqlDatabase::addDatabase("QODBC");
+    db.setHostName("localhost");
+    db.setDatabaseName("DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;");
+    db.setUserName("root");
+    db.setPassword("root");
+    if (db.open())
+    {
+        ui->statusbar->showMessage("Подключение успешно!");
+    } else {
+        ui->statusbar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
+        qDebug() << db.lastError();
+    }
 }
 
 void MainWindow::on_action_2_triggered()
@@ -100,18 +94,34 @@ void MainWindow::add_action_database()
     mnu_db->addAction(tr("Принятые сообщения"));
 }
 
+void MainWindow::add_table_view()
+{
+    tbv = new QTableView(this);
+    ui->verticalLayout->addWidget(mnb);
+    ui->verticalLayout->addWidget(tbv);
+}
+
 void MainWindow::add_action_about()
 {
     QAction* ab_app_action = mnu_ab->addAction(tr("О программе..."));
     connect(ab_app_action, SIGNAL(triggered()), this, SLOT(show_about()));
     QAction* ab_qt_action = mnu_ab->addAction(tr("О Qt"));
-    connect(ab_qt_action, SIGNAL(triggered()), this, SLOT(on_action_Qt_triggered()));
+    connect(ab_qt_action, SIGNAL(triggered()), this, SLOT(show_about_Qt()));
 }
 
 void MainWindow::show_about()
 {
-    QLabel lbl_about("qwerty!");
-    lbl_about.show();
+    QLabel *lbl = new QLabel;
+    lbl->setText("<h3> Учет электронных сообщений АСЗИ Цитрин. </h3>");
+    lbl->resize(350, 200);
+    lbl->setMaximumSize(350, 200);
+    lbl->setMinimumSize(350, 200);
+    lbl->setAlignment(Qt::AlignTop);
+    lbl->setContentsMargins(10,10,10,10);
+    lbl->setWindowModality(Qt::ApplicationModal);
+    lbl->setWindowFlags(Qt::Dialog);
+    lbl->setWindowTitle("Информация о программе");
+    lbl->show();
 }
 
 void MainWindow::show_about_Qt()
