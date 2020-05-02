@@ -9,19 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    mnb = new QMenuBar(this);
-
-    mnu_db = new QMenu(tr("База данных"));
-    mnu_dir = new QMenu(tr("Справочник"));
-    mnu_set = new QMenu(tr("Настройки"));
-    mnu_ab = new QMenu(tr("Информация"));
-
-    mnb->addMenu(mnu_db);
-    mnb->addMenu(mnu_dir);
-    mnb->addMenu(mnu_set);
-    mnb->addMenu(mnu_ab);
+    add_menu();
 
     add_action_database();
+    add_action_directory();
     add_action_about();
     add_table_view();
 
@@ -34,6 +25,21 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::add_menu()
+{
+    mnb = new QMenuBar(this);
+
+    mnu_db = new QMenu(tr("База данных"));
+    mnu_dir = new QMenu(tr("Справочник"));
+    mnu_set = new QMenu(tr("Настройки"));
+    mnu_ab = new QMenu(tr("Информация"));
+
+    mnb->addMenu(mnu_db);
+    mnb->addMenu(mnu_dir);
+    mnb->addMenu(mnu_set);
+    mnb->addMenu(mnu_ab);
 }
 
 void MainWindow::database_connection()
@@ -52,35 +58,34 @@ void MainWindow::database_connection()
     }
 }
 
-void MainWindow::on_action_2_triggered()
+void MainWindow::show_directory()
 {
-    /*QSqlQuery query = QSqlQuery(db);
+    QSqlQuery query = QSqlQuery(db);
     query.exec("select * from directory_view");
     model = new QSqlTableModel(this, db);
     model->setTable("directory_view");
     model->select();
-    ui->tableView->setModel(model);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);*/
+    tbv->setModel(model);
 }
 
-void MainWindow::on_action_3_triggered()
+void MainWindow::show_send_mail()
 {
-    /*QSqlQuery query = QSqlQuery(db);
+    QSqlQuery query = QSqlQuery(db);
     query.exec("select * from send_view");
     model = new QSqlTableModel(this, db);
     model->setTable("send_view");
     model->select();
-    ui->tableView->setModel(model);*/
+    tbv->setModel(model);
 }
 
-void MainWindow::on_action_4_triggered()
+void MainWindow::show_received_mail()
 {
-    /*QSqlQuery query = QSqlQuery(db);
+    QSqlQuery query = QSqlQuery(db);
     query.exec("select * from received_view");
     model = new QSqlTableModel(this, db);
     model->setTable("received_view");
     model->select();
-    ui->tableView->setModel(model);*/
+    tbv->setModel(model);
 }
 
 void MainWindow::createContextMenu()
@@ -90,13 +95,22 @@ void MainWindow::createContextMenu()
 
 void MainWindow::add_action_database()
 {
-    mnu_db->addAction(tr("Отправленные сообщения"));
-    mnu_db->addAction(tr("Принятые сообщения"));
+    QAction* send_mail = mnu_db->addAction(tr("Отправленные сообщения"));
+    connect(send_mail, SIGNAL(triggered()), this, SLOT(show_send_mail()));
+    QAction* received_mail = mnu_db->addAction(tr("Принятые сообщения"));
+    connect(received_mail, SIGNAL(triggered()), this, SLOT(show_received_mail()));
+}
+
+void MainWindow::add_action_directory()
+{
+    QAction* directory = mnu_dir->addAction(tr("Справочник адресов"));
+    connect(directory, SIGNAL(triggered()), this, SLOT(show_directory()));
 }
 
 void MainWindow::add_table_view()
 {
     tbv = new QTableView(this);
+    tbv->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->verticalLayout->addWidget(mnb);
     ui->verticalLayout->addWidget(tbv);
 }

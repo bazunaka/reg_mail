@@ -29,17 +29,16 @@ private slots:
 
     void add_action_database();
 
+    void add_menu();
     void add_action_about();
+    void add_action_directory();
     void show_about_Qt();
     void add_table_view();
 
     void database_connection();
-
-    void on_action_2_triggered();
-
-    void on_action_3_triggered();
-
-    void on_action_4_triggered();
+    void show_directory();
+    void show_send_mail();
+    void show_received_mail();
 
     void createContextMenu();
 
