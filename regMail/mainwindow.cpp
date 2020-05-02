@@ -45,9 +45,29 @@ void MainWindow::on_action_Qt_triggered()
 void MainWindow::on_action_2_triggered()
 {
     QSqlQuery query = QSqlQuery(db);
-    query.exec("select * from directory");
+    query.exec("select * from directory_view");
     model = new QSqlTableModel(this, db);
-    model->setTable("directory");
+    model->setTable("directory_view");
+    model->select();
+    ui->tableView->setModel(model);
+}
+
+void MainWindow::on_action_3_triggered()
+{
+    QSqlQuery query = QSqlQuery(db);
+    query.exec("select * from send_view");
+    model = new QSqlTableModel(this, db);
+    model->setTable("send_view");
+    model->select();
+    ui->tableView->setModel(model);
+}
+
+void MainWindow::on_action_4_triggered()
+{
+    QSqlQuery query = QSqlQuery(db);
+    query.exec("select * from received_view");
+    model = new QSqlTableModel(this, db);
+    model->setTable("received_view");
     model->select();
     ui->tableView->setModel(model);
 }
