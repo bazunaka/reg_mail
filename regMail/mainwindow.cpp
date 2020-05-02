@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     database_connection();
 
     createContextMenu();
-
 }
 
 MainWindow::~MainWindow()
