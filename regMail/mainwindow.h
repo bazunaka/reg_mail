@@ -8,6 +8,7 @@
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlQuery>
 #include <QSqlTableModel>
+#include <QTableView>
 #include <QMenu>
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +39,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QTableView *tbv;
     QSqlDatabase db;
     QSqlTableModel* model;
     QMenu* m_pmnu;

@@ -12,12 +12,10 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -33,7 +31,7 @@ public:
     QAction *action_4;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
-    QTableView *tableView;
+    QVBoxLayout *verticalLayout_2;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
     QMenu *menu;
@@ -65,12 +63,11 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        tableView = new QTableView(centralwidget);
-        tableView->setObjectName(QString::fromUtf8("tableView"));
-        tableView->setEnabled(true);
-        tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
 
-        verticalLayout->addWidget(tableView);
+        verticalLayout->addLayout(verticalLayout_2);
 
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
