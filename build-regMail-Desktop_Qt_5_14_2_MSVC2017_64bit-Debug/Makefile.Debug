@@ -1697,6 +1697,10 @@ debug\mainwindow.obj: ..\regMail\mainwindow.cpp ..\regMail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtCore\QSettings \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMenu \
 		ui_mainwindow.h \
+		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QAction \
+		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication \
+		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStatusBar \
+		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		C:\Qt\5.14.2\msvc2017_64\include\QtCore\QDebug
 

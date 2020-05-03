@@ -12,16 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
     QCoreApplication::setOrganizationName("company");
     QCoreApplication::setApplicationName("myprogram");
 
-    //settings.setValue("/settings/stringkey.ini", "string value");
-
-    QSettings *settings = new QSettings("settings.ini", QSettings::IniFormat);
-    QString db_driver = settings->value("db_connect/db_driver").toString();
-    QString db_host = settings->value("db_connect/db_host").toString();
-    QString db_name = settings->value("db_connect/db_name").toString();
-    QString db_user = settings->value("db_connect/db_user").toString();
-    QString db_password = settings->value("db_connect/db_password").toString();
-    qDebug() << db_driver << db_host << db_name << db_user << db_password;
-
     add_menu();
 
     add_action_database();
@@ -31,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     database_connection();
 
-    createContextMenu();
 }
 
 MainWindow::~MainWindow()
@@ -56,11 +45,20 @@ void MainWindow::add_menu()
 
 void MainWindow::database_connection()
 {
-    db = QSqlDatabase::addDatabase("QODBC");
-    db.setHostName("localhost");
-    db.setDatabaseName("DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;");
-    db.setUserName("root");
-    db.setPassword("root");
+    QSettings *settings = new QSettings("settings.ini", QSettings::IniFormat);
+    QString db_driver = settings->value("db_connect/db_driver").toString();
+    QString db_drv_string = settings->value("db_connect/db_drv_string").toString();
+    QString db_host = settings->value("db_connect/db_host").toString();
+    QString db_name = settings->value("db_connect/db_name").toString();
+    QString db_user = settings->value("db_connect/db_user").toString();
+    QString db_password = settings->value("db_connect/db_password").toString();
+    //qDebug() << db_driver << db_drv_string << db_host << db_name << db_user << db_password;
+
+    db = QSqlDatabase::addDatabase(db_driver);
+    db.setHostName(db_host);
+    db.setDatabaseName("DRIVER={" + db_drv_string + "};DATABASE=" + db_name + ";");
+    db.setUserName(db_user);
+    db.setPassword(db_password);
     if (db.open())
     {
         ui->statusbar->showMessage("Подключение успешно!");
@@ -100,11 +98,6 @@ void MainWindow::show_received_mail()
     tbv->setModel(model);
 }
 
-void MainWindow::createContextMenu()
-{
-
-}
-
 void MainWindow::add_action_database()
 {
     QAction* send_mail = mnu_db->addAction(tr("Отправленные сообщения"));
@@ -119,12 +112,22 @@ void MainWindow::add_action_directory()
     connect(directory, SIGNAL(triggered()), this, SLOT(show_directory()));
 }
 
+void MainWindow::createContextMenu()
+{
+    tbv->addAction(new QAction(QObject::tr("Добавить запись")));
+    tbv->addAction(new QAction(QObject::tr("Редактировать запись")));
+    tbv->addAction(new QAction(QObject::tr("Удалить запись")));
+    tbv->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
+
 void MainWindow::add_table_view()
 {
     tbv = new QTableView(this);
     tbv->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    createContextMenu();
     ui->verticalLayout->addWidget(mnb);
     ui->verticalLayout->addWidget(tbv);
+    //connect(tbv, SIGNAL(createContextMenu()), this, SLOT(createContextMenu()));
 }
 
 void MainWindow::add_action_about()
