@@ -9,6 +9,7 @@
 #include <QtSql/QSqlQuery>
 #include <QSqlTableModel>
 #include <QtWidgets>
+#include <QSettings>
 #include <QtGui>
 #include <QMenu>
 

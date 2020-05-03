@@ -9,6 +9,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    QCoreApplication::setOrganizationName("company");
+    QCoreApplication::setApplicationName("myprogram");
+
+    //settings.setValue("/settings/stringkey.ini", "string value");
+
+    QSettings *settings = new QSettings("settings.ini", QSettings::IniFormat);
+    QString db_driver = settings->value("db_connect/db_driver").toString();
+    QString db_host = settings->value("db_connect/db_host").toString();
+    QString db_name = settings->value("db_connect/db_name").toString();
+    QString db_user = settings->value("db_connect/db_user").toString();
+    QString db_password = settings->value("db_connect/db_password").toString();
+    qDebug() << db_driver << db_host << db_name << db_user << db_password;
+
     add_menu();
 
     add_action_database();

@@ -8,6 +8,7 @@ QMAKE_CXX.COMPILER_MACROS = \
 QMAKE_CXX.INCDIRS = \
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.25.28610\\ATLMFC\\include" \
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.25.28610\\include" \
+    "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um" \
     "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.18362.0\\ucrt" \
     "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.18362.0\\shared" \
     "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.18362.0\\um" \
@@ -16,5 +17,6 @@ QMAKE_CXX.INCDIRS = \
 QMAKE_CXX.LIBDIRS = \
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.25.28610\\ATLMFC\\lib\\x86" \
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.25.28610\\lib\\x86" \
+    "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\lib\\um\\x86" \
     "C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.18362.0\\ucrt\\x86" \
     "C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.18362.0\\um\\x86"

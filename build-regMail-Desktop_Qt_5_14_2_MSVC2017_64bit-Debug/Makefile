@@ -257,7 +257,6 @@ Makefile: ..\regMail\regMail.pro C:\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qma
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_config.prf \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\features\spec_post.prf \
-		.qmake.stash \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\features\exclusive_builds.prf \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\common\msvc-version.conf \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\features\toolchain.prf \
@@ -288,6 +287,7 @@ Makefile: ..\regMail\regMail.pro C:\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qma
 		C:\Qt\5.14.2\msvc2017_64\lib\Qt5Sql.prl \
 		C:\Qt\5.14.2\msvc2017_64\lib\Qt5Core.prl \
 		C:\Qt\5.14.2\msvc2017_64\lib\qtmain.prl \
+		.qmake.stash \
 		C:\Qt\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf \
 		C:\Qt\5.14.2\msvc2017_64\lib\Qt5Widgetsd.prl \
 		C:\Qt\5.14.2\msvc2017_64\lib\Qt5Guid.prl \
@@ -468,7 +468,6 @@ C:\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_functions.prf:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_config.prf:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\features\spec_post.prf:
-.qmake.stash:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\features\exclusive_builds.prf:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\common\msvc-version.conf:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\features\toolchain.prf:
@@ -499,6 +498,7 @@ C:\Qt\5.14.2\msvc2017_64\lib\Qt5Gui.prl:
 C:\Qt\5.14.2\msvc2017_64\lib\Qt5Sql.prl:
 C:\Qt\5.14.2\msvc2017_64\lib\Qt5Core.prl:
 C:\Qt\5.14.2\msvc2017_64\lib\qtmain.prl:
+.qmake.stash:
 C:\Qt\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf:
 C:\Qt\5.14.2\msvc2017_64\lib\Qt5Widgetsd.prl:
 C:\Qt\5.14.2\msvc2017_64\lib\Qt5Guid.prl:

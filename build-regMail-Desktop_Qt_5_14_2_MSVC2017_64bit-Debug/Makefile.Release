@@ -670,6 +670,7 @@ release\moc_mainwindow.cpp: ..\regMail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidgetaction.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsversion.h \
+		C:\Qt\5.14.2\msvc2017_64\include\QtCore\QSettings \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMenu \
 		release\moc_predefs.h \
 		C:\Qt\5.14.2\msvc2017_64\bin\moc.exe
@@ -1193,6 +1194,7 @@ release\main.obj: ..\regMail\main.cpp ..\regMail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidgetaction.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsversion.h \
+		C:\Qt\5.14.2\msvc2017_64\include\QtCore\QSettings \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMenu \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication
 
@@ -1691,6 +1693,7 @@ release\mainwindow.obj: ..\regMail\mainwindow.cpp ..\regMail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidgetaction.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsversion.h \
+		C:\Qt\5.14.2\msvc2017_64\include\QtCore\QSettings \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMenu \
 		ui_mainwindow.h \
 		C:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
