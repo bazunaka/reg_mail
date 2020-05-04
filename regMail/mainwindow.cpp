@@ -75,7 +75,6 @@ void MainWindow::database_connection()
 
 void MainWindow::show_directory()
 {
-    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from directory_view");
     model = new QSqlTableModel(this, db);
@@ -83,13 +82,10 @@ void MainWindow::show_directory()
     model->select();
     tbv->setModel(model);
     column_width(1);
-    QStringList names = {tr("Добавить адрес"), tr("Редактировать адрес"), tr("Удалить адрес")};
-    createContextMenu(names);
 }
 
 void MainWindow::show_send_mail()
 {
-    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from send_view");
     model = new QSqlTableModel(this, db);
@@ -97,13 +93,10 @@ void MainWindow::show_send_mail()
     model->select();
     tbv->setModel(model);
     column_width(3);
-    QStringList names = {tr("Добавить отправленное сообщение"), tr("Редактировать отправленное сообщение"), tr("Удалить отправленное сообщение")};
-    createContextMenu(names);
 }
 
 void MainWindow::show_received_mail()
 {
-    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from received_view");
     model = new QSqlTableModel(this, db);
@@ -111,8 +104,6 @@ void MainWindow::show_received_mail()
     model->select();
     tbv->setModel(model);
     column_width(3);
-    QStringList names = {tr("Добавить принятое сообщение"), tr("Редактировать принятое сообщение"), tr("Удалить принятое сообщение")};
-    createContextMenu(names);
 }
 
 //Вызов методов просмотра таблиц
@@ -132,27 +123,6 @@ void MainWindow::createContextMenu(QStringList name_menu)
     add_record = new QAction(name_menu[0]);
     edit_record = new QAction(name_menu[1]);
     rm_record   = new QAction(name_menu[2]);
-
-    tbv->addAction(add_record);
-    tbv->addAction(edit_record);
-    tbv->addAction(rm_record);
-
-    tbv->setContextMenuPolicy(Qt::ActionsContextMenu);
-
-    tbv->connect(add_record,  SIGNAL(triggered()), this, SLOT(show_add_sendmail()));
-    tbv->connect(edit_record, SIGNAL(triggered()), this, SLOT(show_add_receivedmail()));
-    tbv->connect(rm_record,   SIGNAL(triggered()), this, SLOT(show_add_directory()));
-}
-
-//Удаление контекстного меню
-void MainWindow::deleteContextMenu()
-{
-    if (add_record != NULL && edit_record != NULL && rm_record != NULL)
-    {
-        delete add_record;
-        delete edit_record;
-        delete rm_record;
-    }
 }
 
 //Создание таблицы для отображения данных из БД
@@ -160,9 +130,22 @@ void MainWindow::add_table_view()
 {
     tbv = new QTableView(this);
     tbv->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tbv->setContextMenuPolicy(Qt::ActionsContextMenu);
     //createContextMenu();
     ui->verticalLayout->addWidget(mnb);
     ui->verticalLayout->addWidget(tbv);
+
+    add_record  = new QAction;
+    edit_record = new QAction;
+
+    add_record ->setText("Добавить запись");
+    edit_record->setText("Редактировать запись");
+
+    add_record ->setEnabled(false);
+    edit_record->setEnabled(false);
+
+    tbv->addAction(add_record);
+    tbv->addAction(edit_record);
 }
 
 //Вызов методов отображения окон меню "О программе..."
@@ -217,7 +200,7 @@ void MainWindow::show_add_receivedmail()
 
 void MainWindow::show_add_directory()
 {
-    createEdit_db_Widget("Удалить записб");
+    createEdit_db_Widget("Удалить запись");
 }
 
 void MainWindow::createEdit_db_Widget(QString title_window)

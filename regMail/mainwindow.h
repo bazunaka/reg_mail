@@ -44,8 +44,6 @@ private slots:
     void show_add_receivedmail();
     void show_add_directory();
 
-    void deleteContextMenu();
-
     //void createContextMenu();
     void createContextMenu(QStringList name_menu);
     void createEdit_db_Widget(QString title_window);
@@ -57,6 +55,7 @@ private:
 
     QTableView *tbv;
     QStatusBar *stb;
+
     QMenuBar *mnb;
     QMenu *mnu_db;
     QMenu *mnu_dir;
@@ -69,8 +68,7 @@ private:
     QAction *rm_record;
 
     QSqlDatabase db;
-    QSqlTableModel* model;
-    QMenu* m_pmnu;
+    QSqlTableModel* model;   
 
     QWidget *edit_db;
 };
