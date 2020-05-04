@@ -32,7 +32,6 @@ private slots:
 
     void add_menu();
     void add_action_about();
-    void add_action_directory();
     void show_about_Qt();
     void add_table_view();
 
@@ -41,7 +40,17 @@ private slots:
     void show_send_mail();
     void show_received_mail();
 
-    void createContextMenu();
+    void show_add_sendmail();
+    void show_add_receivedmail();
+    void show_add_directory();
+
+    void deleteContextMenu();
+
+    //void createContextMenu();
+    void createContextMenu(QStringList name_menu);
+    void createEdit_db_Widget(QString title_window);
+
+    void column_width(int column_count);
 
 private:
     Ui::MainWindow *ui;
@@ -55,9 +64,14 @@ private:
     QMenu *mnu_ab;
 
     QAction *aboutAction;
+    QAction *add_record;
+    QAction *edit_record;
+    QAction *rm_record;
 
     QSqlDatabase db;
     QSqlTableModel* model;
     QMenu* m_pmnu;
+
+    QWidget *edit_db;
 };
 #endif // MAINWINDOW_H

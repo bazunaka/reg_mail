@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     add_menu();
 
     add_action_database();
-    add_action_directory();
     add_action_about();
     add_table_view();
 
@@ -28,14 +27,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//Создание основного меню
 void MainWindow::add_menu()
 {
     mnb = new QMenuBar(this);
 
-    mnu_db = new QMenu(tr("База данных"));
+    mnu_db  = new QMenu(tr("База данных"));
     mnu_dir = new QMenu(tr("Справочник"));
     mnu_set = new QMenu(tr("Настройки"));
-    mnu_ab = new QMenu(tr("Информация"));
+    mnu_ab  = new QMenu(tr("Информация"));
 
     mnb->addMenu(mnu_db);
     mnb->addMenu(mnu_dir);
@@ -43,15 +43,16 @@ void MainWindow::add_menu()
     mnb->addMenu(mnu_ab);
 }
 
+//Подключение к БД
 void MainWindow::database_connection()
 {
-    QSettings *settings = new QSettings("settings.ini", QSettings::IniFormat);
-    QString db_driver = settings->value("db_connect/db_driver").toString();
+    QSettings *settings   = new QSettings("settings.ini", QSettings::IniFormat);
+    QString db_driver     = settings->value("db_connect/db_driver").toString();
     QString db_drv_string = settings->value("db_connect/db_drv_string").toString();
-    QString db_host = settings->value("db_connect/db_host").toString();
-    QString db_name = settings->value("db_connect/db_name").toString();
-    QString db_user = settings->value("db_connect/db_user").toString();
-    QString db_password = settings->value("db_connect/db_password").toString();
+    QString db_host       = settings->value("db_connect/db_host").toString();
+    QString db_name       = settings->value("db_connect/db_name").toString();
+    QString db_user       = settings->value("db_connect/db_user").toString();
+    QString db_password   = settings->value("db_connect/db_password").toString();
     //qDebug() << db_driver << db_drv_string << db_host << db_name << db_user << db_password;
 
     db = QSqlDatabase::addDatabase(db_driver);
@@ -68,68 +69,103 @@ void MainWindow::database_connection()
     }
 }
 
+/*
+ * Отображение таблиц из БД
+ * */
+
 void MainWindow::show_directory()
 {
+    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from directory_view");
     model = new QSqlTableModel(this, db);
     model->setTable("directory_view");
     model->select();
     tbv->setModel(model);
+    column_width(1);
+    QStringList names = {tr("Добавить адрес"), tr("Редактировать адрес"), tr("Удалить адрес")};
+    createContextMenu(names);
 }
 
 void MainWindow::show_send_mail()
 {
+    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from send_view");
     model = new QSqlTableModel(this, db);
     model->setTable("send_view");
     model->select();
     tbv->setModel(model);
+    column_width(3);
+    QStringList names = {tr("Добавить отправленное сообщение"), tr("Редактировать отправленное сообщение"), tr("Удалить отправленное сообщение")};
+    createContextMenu(names);
 }
 
 void MainWindow::show_received_mail()
 {
+    deleteContextMenu();
     QSqlQuery query = QSqlQuery(db);
     query.exec("select * from received_view");
     model = new QSqlTableModel(this, db);
     model->setTable("received_view");
     model->select();
     tbv->setModel(model);
+    column_width(3);
+    QStringList names = {tr("Добавить принятое сообщение"), tr("Редактировать принятое сообщение"), tr("Удалить принятое сообщение")};
+    createContextMenu(names);
 }
 
+//Вызов методов просмотра таблиц
 void MainWindow::add_action_database()
 {
     QAction* send_mail = mnu_db->addAction(tr("Отправленные сообщения"));
     connect(send_mail, SIGNAL(triggered()), this, SLOT(show_send_mail()));
     QAction* received_mail = mnu_db->addAction(tr("Принятые сообщения"));
     connect(received_mail, SIGNAL(triggered()), this, SLOT(show_received_mail()));
-}
-
-void MainWindow::add_action_directory()
-{
     QAction* directory = mnu_dir->addAction(tr("Справочник адресов"));
     connect(directory, SIGNAL(triggered()), this, SLOT(show_directory()));
 }
 
-void MainWindow::createContextMenu()
+//Создание контекстного меню
+void MainWindow::createContextMenu(QStringList name_menu)
 {
-    tbv->addAction(new QAction(QObject::tr("Добавить запись")));
-    tbv->addAction(new QAction(QObject::tr("Редактировать запись")));
-    tbv->addAction(new QAction(QObject::tr("Удалить запись")));
+    add_record = new QAction(name_menu[0]);
+    edit_record = new QAction(name_menu[1]);
+    rm_record   = new QAction(name_menu[2]);
+
+    tbv->addAction(add_record);
+    tbv->addAction(edit_record);
+    tbv->addAction(rm_record);
+
     tbv->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    tbv->connect(add_record,  SIGNAL(triggered()), this, SLOT(show_add_sendmail()));
+    tbv->connect(edit_record, SIGNAL(triggered()), this, SLOT(show_add_receivedmail()));
+    tbv->connect(rm_record,   SIGNAL(triggered()), this, SLOT(show_add_directory()));
 }
 
+//Удаление контекстного меню
+void MainWindow::deleteContextMenu()
+{
+    if (add_record != NULL && edit_record != NULL && rm_record != NULL)
+    {
+        delete add_record;
+        delete edit_record;
+        delete rm_record;
+    }
+}
+
+//Создание таблицы для отображения данных из БД
 void MainWindow::add_table_view()
 {
     tbv = new QTableView(this);
     tbv->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    createContextMenu();
+    //createContextMenu();
     ui->verticalLayout->addWidget(mnb);
     ui->verticalLayout->addWidget(tbv);
-    //connect(tbv, SIGNAL(createContextMenu()), this, SLOT(createContextMenu()));
 }
 
+//Вызов методов отображения окон меню "О программе..."
 void MainWindow::add_action_about()
 {
     QAction* ab_app_action = mnu_ab->addAction(tr("О программе..."));
@@ -138,10 +174,13 @@ void MainWindow::add_action_about()
     connect(ab_qt_action, SIGNAL(triggered()), this, SLOT(show_about_Qt()));
 }
 
+/*
+ * Отображение окон из меню "О программе..."
+ * */
 void MainWindow::show_about()
 {
     QLabel *lbl = new QLabel;
-    lbl->setText("<h3> Учет электронных сообщений АСЗИ Цитрин. </h3>");
+    lbl->setText("<h3> Учет электронных сообщений АСЗИ Цитрин. </h3><br> <h4> Версия 0.0.1 </h4>");
     lbl->resize(350, 200);
     lbl->setMaximumSize(350, 200);
     lbl->setMinimumSize(350, 200);
@@ -156,4 +195,35 @@ void MainWindow::show_about()
 void MainWindow::show_about_Qt()
 {
     QMessageBox::aboutQt(this);
+}
+
+//Указание размеров колонок в таблицах
+void MainWindow::column_width(int column_count)
+{
+    for (int var = 0; var <= column_count; var++) {
+        tbv->horizontalHeader()->setSectionResizeMode(var, QHeaderView::Stretch);
+    }
+}
+
+void MainWindow::show_add_sendmail()
+{
+    createEdit_db_Widget("Новая запись");
+}
+
+void MainWindow::show_add_receivedmail()
+{
+    createEdit_db_Widget("Редактировать запись");
+}
+
+void MainWindow::show_add_directory()
+{
+    createEdit_db_Widget("Удалить записб");
+}
+
+void MainWindow::createEdit_db_Widget(QString title_window)
+{
+    QWidget *edit_db = new QWidget();
+    edit_db->setWindowTitle(title_window);
+    edit_db->setWindowModality(Qt::ApplicationModal);
+    edit_db->show();
 }
