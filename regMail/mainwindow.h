@@ -25,17 +25,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void show_about();
+private slots:   
+    void database_connection();
 
     void add_action_database();
-
     void add_menu();
-    void add_action_about();
-    void show_about_Qt();
+    void add_action_about();   
     void add_table_view();
 
-    void database_connection();
+    void show_about();
+    void show_about_Qt();
     void show_directory();
     void show_send_mail();
     void show_received_mail();
@@ -44,9 +43,7 @@ private slots:
     void show_add_receivedmail();
     void show_add_directory();
 
-    //void createContextMenu();
-    void createContextMenu(QStringList name_menu);
-    void createEdit_db_Widget(QString title_window);
+    void createEdit_db_Widget();
 
     void column_width(int column_count);
 

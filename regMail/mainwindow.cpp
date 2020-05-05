@@ -82,6 +82,9 @@ void MainWindow::show_directory()
     model->select();
     tbv->setModel(model);
     column_width(1);
+    add_record->setEnabled(true);
+    connect(add_record, SIGNAL(triggered()), this, SLOT(createEdit_db_Widget()));
+
 }
 
 void MainWindow::show_send_mail()
@@ -93,6 +96,8 @@ void MainWindow::show_send_mail()
     model->select();
     tbv->setModel(model);
     column_width(3);
+    add_record->setEnabled(true);
+    connect(add_record, SIGNAL(triggered()), this, SLOT(show_add_sendmail()));
 }
 
 void MainWindow::show_received_mail()
@@ -104,25 +109,19 @@ void MainWindow::show_received_mail()
     model->select();
     tbv->setModel(model);
     column_width(3);
+    add_record->setEnabled(true);
+    connect(add_record, SIGNAL(triggered()), this, SLOT(show_add_sendmail()));
 }
 
 //Вызов методов просмотра таблиц
 void MainWindow::add_action_database()
 {
-    QAction* send_mail = mnu_db->addAction(tr("Отправленные сообщения"));
+    QAction* send_mail     = mnu_db->addAction(tr("Отправленные сообщения"));
     connect(send_mail, SIGNAL(triggered()), this, SLOT(show_send_mail()));
     QAction* received_mail = mnu_db->addAction(tr("Принятые сообщения"));
     connect(received_mail, SIGNAL(triggered()), this, SLOT(show_received_mail()));
-    QAction* directory = mnu_dir->addAction(tr("Справочник адресов"));
+    QAction* directory     = mnu_dir->addAction(tr("Справочник адресов"));
     connect(directory, SIGNAL(triggered()), this, SLOT(show_directory()));
-}
-
-//Создание контекстного меню
-void MainWindow::createContextMenu(QStringList name_menu)
-{
-    add_record = new QAction(name_menu[0]);
-    edit_record = new QAction(name_menu[1]);
-    rm_record   = new QAction(name_menu[2]);
 }
 
 //Создание таблицы для отображения данных из БД
@@ -190,23 +189,27 @@ void MainWindow::column_width(int column_count)
 
 void MainWindow::show_add_sendmail()
 {
-    createEdit_db_Widget("Новая запись");
+    //createEdit_db_Widget("Новая запись");
+    QDialog *dialog = new QDialog;;
+    dialog->setModal(true);
+    dialog->show();
 }
 
 void MainWindow::show_add_receivedmail()
 {
-    createEdit_db_Widget("Редактировать запись");
+    //createEdit_db_Widget("Редактировать запись");
 }
 
 void MainWindow::show_add_directory()
 {
-    createEdit_db_Widget("Удалить запись");
+    //createEdit_db_Widget("Удалить запись");
 }
 
-void MainWindow::createEdit_db_Widget(QString title_window)
+void MainWindow::createEdit_db_Widget()
 {
-    QWidget *edit_db = new QWidget();
-    edit_db->setWindowTitle(title_window);
+    /*QWidget *edit_db = new QWidget();
+    edit_db->setAttribute(Qt::WA_DeleteOnClose);
+    edit_db->setWindowTitle("title_window");
     edit_db->setWindowModality(Qt::ApplicationModal);
-    edit_db->show();
+    edit_db->show();  */
 }
