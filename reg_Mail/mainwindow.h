@@ -18,20 +18,27 @@ public:
     ~MainWidget();
 
 private:
-    QTabWidget      *tab;
-    QTableView       *tbl1;
-    QTableView       *tbl2;
-    QMenuBar         *mnu_bar;
-    QMenu              *pmnu1;
-    QMenu              *pmnu2;
-    QVBoxLayout   *verticalLayout;
-    QSettings          *settings;
-    QStatusBar        *st_bar;
+    QTabWidget       *tab;
+    QTableView        *tbl1;
+    QTableView        *tbl2;
+    QTableView        *tbl3;
+    QMenuBar          *mnu_bar;
+    QMenu               *pmnu1;
+    QMenu               *pmnu2;
+    QHBoxLayout     *horizontalLayout;
+    QVBoxLayout     *verticalLayout;
+    QVBoxLayout     *mainLayout;
+    QSettings             *settings;
+    QStatusBar          *st_bar;
     QSqlDatabase      db;  
     QSqlTableModel  *sqtbl1;
     QSqlTableModel  *sqtbl2;
+    QSqlTableModel  *sqtbl3;
     QSqlQueryModel model1;
     QSqlQueryModel model2;
+    QAction               *add_record;
+    QPushButton        *submit;
+    QPushButton        *revert;
 
     QString *db_driver;
     QString *db_drv_string;
@@ -39,5 +46,10 @@ private:
     QString *db_name;
     QString *db_user;
     QString *db_password;
+
+private slots:
+    void qwe();
+    void select_db();
+
 };
 #endif // MAINWINDOW_H
