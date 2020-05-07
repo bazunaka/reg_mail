@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWidget_t {
     QByteArrayData data[4];
-    char stringdata0[26];
+    char stringdata0[32];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,12 +33,12 @@ struct qt_meta_stringdata_MainWidget_t {
 static const qt_meta_stringdata_MainWidget_t qt_meta_stringdata_MainWidget = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWidget"
-QT_MOC_LITERAL(1, 11, 3), // "qwe"
-QT_MOC_LITERAL(2, 15, 0), // ""
-QT_MOC_LITERAL(3, 16, 9) // "select_db"
+QT_MOC_LITERAL(1, 11, 9), // "insert_db"
+QT_MOC_LITERAL(2, 21, 0), // ""
+QT_MOC_LITERAL(3, 22, 9) // "delete_db"
 
     },
-    "MainWidget\0qwe\0\0select_db"
+    "MainWidget\0insert_db\0\0delete_db"
 };
 #undef QT_MOC_LITERAL
 
@@ -72,8 +72,8 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->qwe(); break;
-        case 1: _t->select_db(); break;
+        case 0: _t->insert_db(); break;
+        case 1: _t->delete_db(); break;
         default: ;
         }
     }

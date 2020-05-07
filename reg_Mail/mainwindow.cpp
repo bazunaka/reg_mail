@@ -16,12 +16,13 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     submit                  = new QPushButton(this);
     revert                   = new QPushButton(this);
 
-    add_record = pmnu1->addAction("тут функция добав. строки");
+    add_record    = pmnu1->addAction("Добавить строку");
+    delete_record = pmnu1->addAction("Удалить запись");
 
     mnu_bar->addMenu(pmnu1);
     mnu_bar->addMenu(pmnu2);
 
-    submit->setText("submit");
+    submit->setText("Подтвердить");
     revert->setText("revert");
 
     verticalLayout->addWidget(mnu_bar);
@@ -103,45 +104,30 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl3->setModel(sqtbl3);
     tbl3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    tab->addTab(tbl1, "название таба1");
-    tab->addTab(tbl2, "название таба2");
-    tab->addTab(tbl3, "название таба3");
+    tab->addTab(tbl1, "Отправленные сообщения");
+    tab->addTab(tbl2, "Принятые сообщения");
+    tab->addTab(tbl3, "Список адресов");
 
-    connect(add_record, SIGNAL(triggered()), this, SLOT(qwe()));
-    //connect(submit, SIGNAL(clicked()), sqtbl1, SLOT(submitAll()));
-
+    connect(add_record, SIGNAL(triggered()), this, SLOT(insert_db()));
+    connect(delete_record, SIGNAL(triggered()), this, SLOT(delete_db()));
+    connect(submit, SIGNAL(clicked()), sqtbl1, SLOT(submitAll()));
 }
 
-void MainWidget::qwe()
+void MainWidget::insert_db()
 {
-    int numTab = tab->currentIndex();
-    if (numTab == 0)
+    qDebug() << "insert in 1 table" << sqtbl1->insertRow(sqtbl1->rowCount());
+    st_bar->showMessage("Строка добавлена!");
+}
+
+void MainWidget::delete_db()
+{
+    int selectedRow = tbl1->currentIndex().row();
+    if (selectedRow >= 0)
     {
-        qDebug() << "inserting row in tab 1" << sqtbl1->insertRow(sqtbl1->rowCount());
-        if (sqtbl1->insertRow(sqtbl1->rowCount()))
-        {
-            st_bar->showMessage("Строка добавлена!");
-        }
-    } else if (numTab == 1)
-    {
-        qDebug() << "inserting row in tab 2" << sqtbl2->insertRow(sqtbl2->rowCount());
-        if (sqtbl2->insertRow(sqtbl2->rowCount()))
-        {
-            st_bar->showMessage("Строка добавлена!");
-        }
-    } else if (numTab == 2)
-    {
-        qDebug() << "inserting row in tab 3" << sqtbl3->insertRow(sqtbl3->rowCount());
-        if (sqtbl3->insertRow(sqtbl3->rowCount()))
-        {
-            st_bar->showMessage("Строка добавлена!");
-        }
+        qDebug() << "deleting row in 1 table" << sqtbl1->removeRow(selectedRow);
     }
-}
-
-void MainWidget::select_db()
-{
-    qDebug() << tab->currentIndex();
+    st_bar->showMessage("Строка удалена!");
+    sqtbl1->submitAll();
 }
 
 MainWidget::~MainWidget()

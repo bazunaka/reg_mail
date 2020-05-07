@@ -37,6 +37,7 @@ private:
     QSqlQueryModel model1;
     QSqlQueryModel model2;
     QAction               *add_record;
+    QAction               *delete_record;
     QPushButton        *submit;
     QPushButton        *revert;
 
@@ -48,8 +49,8 @@ private:
     QString *db_password;
 
 private slots:
-    void qwe();
-    void select_db();
+    void insert_db();
+    void delete_db();
 
 };
 #endif // MAINWINDOW_H
