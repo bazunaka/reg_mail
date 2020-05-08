@@ -76,32 +76,32 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     sqtbl1->setTable("send_mail");
     sqtbl1->select();
     sqtbl1->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    sqtbl1->removeColumn(0);
-    sqtbl1->setHeaderData(0, Qt::Horizontal, "Дата отправленного сообщения");
-    sqtbl1->setHeaderData(1, Qt::Horizontal, "Адрес получателя");
-    sqtbl1->setHeaderData(2, Qt::Horizontal, "Информация о сообщении");
-    sqtbl1->setHeaderData(3, Qt::Horizontal, "Файл отправленного сообщения");
+    sqtbl1->setHeaderData(1, Qt::Horizontal, "Дата отправленного сообщения");
+    sqtbl1->setHeaderData(2, Qt::Horizontal, "Адрес получателя");
+    sqtbl1->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
+    sqtbl1->setHeaderData(4, Qt::Horizontal, "Файл отправленного сообщения");
     sqtbl2->setTable("received_mail");
     sqtbl2->select();
     sqtbl2->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    sqtbl2->removeColumn(0);
-    sqtbl2->setHeaderData(0, Qt::Horizontal, "Дата полученного сообщения");
-    sqtbl2->setHeaderData(1, Qt::Horizontal, "Адрес отправителя");
-    sqtbl2->setHeaderData(2, Qt::Horizontal, "Информация о сообщении");
-    sqtbl2->setHeaderData(3, Qt::Horizontal, "Файл полученного сообщения");
+    sqtbl2->setHeaderData(1, Qt::Horizontal, "Дата полученного сообщения");
+    sqtbl2->setHeaderData(2, Qt::Horizontal, "Адрес отправителя");
+    sqtbl2->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
+    sqtbl2->setHeaderData(4, Qt::Horizontal, "Файл полученного сообщения");
     sqtbl3->setTable("directory");
     sqtbl3->select();
     sqtbl3->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    sqtbl3->removeColumn(0);
-    sqtbl3->setHeaderData(0, Qt::Horizontal, "Имя адресата");
-    sqtbl3->setHeaderData(1, Qt::Horizontal, "Электронный адрес");
+    sqtbl3->setHeaderData(1, Qt::Horizontal, "Имя адресата");
+    sqtbl3->setHeaderData(2, Qt::Horizontal, "Электронный адрес");
 
 
     tbl1->setModel(sqtbl1);
+    tbl1->setColumnHidden(0, true);
     tbl1->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl2->setModel(sqtbl2);
+    tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl3->setModel(sqtbl3);
+    tbl3->setColumnHidden(0, true);
     tbl3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     tab->addTab(tbl1, "Отправленные сообщения");
@@ -124,10 +124,9 @@ void MainWidget::delete_db()
     int selectedRow = tbl1->currentIndex().row();
     if (selectedRow >= 0)
     {
-        qDebug() << "deleting row in 1 table" << sqtbl1->removeRow(selectedRow);
+        qDebug() << "deleting row in 1 table" << sqtbl1->removeRows(selectedRow, 1);
     }
     st_bar->showMessage("Строка удалена!");
-    sqtbl1->submitAll();
 }
 
 MainWidget::~MainWidget()
