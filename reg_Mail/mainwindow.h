@@ -8,6 +8,8 @@
 #include <QSqlError>
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
+#include <QSqlRelationalDelegate>
 
 class MainWidget : public QWidget
 {
@@ -32,6 +34,8 @@ private:
     QStatusBar          *st_bar;
     QSqlDatabase      db;  
     QSqlTableModel  *sqtbl1;
+    QSqlRelationalTableModel *srtbl1;
+    QSqlRelationalTableModel *srtbl2;
     QSqlTableModel  *sqtbl2;
     QSqlTableModel  *sqtbl3;
     QSqlQueryModel model1;

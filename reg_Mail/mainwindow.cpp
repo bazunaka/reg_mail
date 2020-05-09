@@ -4,7 +4,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
     tab                      = new QTabWidget(this);
     mnu_bar              = new QMenuBar(this);
-    pmnu1                 = new QMenu("это меню 1");
+    pmnu1                 = new QMenu("Работа с БД");
     pmnu2                 = new QMenu("это меню 2");
     verticalLayout      = new QVBoxLayout();
     horizontalLayout  = new QHBoxLayout();
@@ -73,7 +73,10 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     sqtbl2 = new QSqlTableModel(0, db);
     sqtbl3 = new QSqlTableModel(0, db);
 
-    sqtbl1->setTable("send_mail");
+    srtbl1 = new QSqlRelationalTableModel(0, db);
+    srtbl2 = new QSqlRelationalTableModel(0, db);
+
+    /*sqtbl1->setTable("send_mail");
     sqtbl1->select();
     sqtbl1->setEditStrategy(QSqlTableModel::OnManualSubmit);
     sqtbl1->setHeaderData(1, Qt::Horizontal, "Дата отправленного сообщения");
@@ -87,17 +90,27 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     sqtbl2->setHeaderData(2, Qt::Horizontal, "Адрес отправителя");
     sqtbl2->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
     sqtbl2->setHeaderData(4, Qt::Horizontal, "Файл полученного сообщения");
+    */
+
+    srtbl1->setTable("send_mail");
+    srtbl1->setRelation(2, QSqlRelation("directory", "id_directory", "directory_name"));
+    srtbl1->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    srtbl1->select();
+    srtbl2->setTable("received_mail");
+    srtbl2->setRelation(2, QSqlRelation("directory", "id_directory", "directory_name"));
+    srtbl2->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    srtbl2->select();
     sqtbl3->setTable("directory");
     sqtbl3->select();
     sqtbl3->setEditStrategy(QSqlTableModel::OnManualSubmit);
     sqtbl3->setHeaderData(1, Qt::Horizontal, "Имя адресата");
     sqtbl3->setHeaderData(2, Qt::Horizontal, "Электронный адрес");
 
-
-    tbl1->setModel(sqtbl1);
+    tbl1->setModel(srtbl1);
     tbl1->setColumnHidden(0, true);
     tbl1->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    tbl2->setModel(sqtbl2);
+    tbl1->setItemDelegate(new QSqlRelationalDelegate(tbl1));
+    tbl2->setModel(srtbl2);
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl3->setModel(sqtbl3);
@@ -110,12 +123,12 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     connect(add_record, SIGNAL(triggered()), this, SLOT(insert_db()));
     connect(delete_record, SIGNAL(triggered()), this, SLOT(delete_db()));
-    connect(submit, SIGNAL(clicked()), sqtbl1, SLOT(submitAll()));
+    connect(submit, SIGNAL(clicked()), srtbl1, SLOT(submitAll()));
 }
 
 void MainWidget::insert_db()
 {
-    qDebug() << "insert in 1 table" << sqtbl1->insertRow(sqtbl1->rowCount());
+    qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
     st_bar->showMessage("Строка добавлена!");
 }
 
@@ -124,7 +137,7 @@ void MainWidget::delete_db()
     int selectedRow = tbl1->currentIndex().row();
     if (selectedRow >= 0)
     {
-        qDebug() << "deleting row in 1 table" << sqtbl1->removeRows(selectedRow, 1);
+        qDebug() << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
     }
     st_bar->showMessage("Строка удалена!");
 }
