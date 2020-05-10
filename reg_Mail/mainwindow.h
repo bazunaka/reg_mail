@@ -33,10 +33,8 @@ private:
     QSettings             *settings;
     QStatusBar          *st_bar;
     QSqlDatabase      db;  
-    QSqlTableModel  *sqtbl1;
     QSqlRelationalTableModel *srtbl1;
     QSqlRelationalTableModel *srtbl2;
-    QSqlTableModel  *sqtbl2;
     QSqlTableModel  *sqtbl3;
     QSqlQueryModel model1;
     QSqlQueryModel model2;
@@ -56,5 +54,8 @@ private slots:
     void insert_db();
     void delete_db();
 
+    void submit_db();
+    void revert_db();
 };
+
 #endif // MAINWINDOW_H

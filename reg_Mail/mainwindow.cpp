@@ -23,7 +23,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     mnu_bar->addMenu(pmnu2);
 
     submit->setText("Подтвердить");
-    revert->setText("revert");
+    revert->setText("Отменить изменения");
 
     verticalLayout->addWidget(mnu_bar);
     verticalLayout->addWidget(tab);
@@ -69,37 +69,26 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
         qDebug() << str;
     }
 
-    sqtbl1 = new QSqlTableModel(0, db);
-    sqtbl2 = new QSqlTableModel(0, db);
-    sqtbl3 = new QSqlTableModel(0, db);
-
     srtbl1 = new QSqlRelationalTableModel(0, db);
     srtbl2 = new QSqlRelationalTableModel(0, db);
-
-    /*sqtbl1->setTable("send_mail");
-    sqtbl1->select();
-    sqtbl1->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    sqtbl1->setHeaderData(1, Qt::Horizontal, "Дата отправленного сообщения");
-    sqtbl1->setHeaderData(2, Qt::Horizontal, "Адрес получателя");
-    sqtbl1->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
-    sqtbl1->setHeaderData(4, Qt::Horizontal, "Файл отправленного сообщения");
-    sqtbl2->setTable("received_mail");
-    sqtbl2->select();
-    sqtbl2->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    sqtbl2->setHeaderData(1, Qt::Horizontal, "Дата полученного сообщения");
-    sqtbl2->setHeaderData(2, Qt::Horizontal, "Адрес отправителя");
-    sqtbl2->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
-    sqtbl2->setHeaderData(4, Qt::Horizontal, "Файл полученного сообщения");
-    */
+    sqtbl3 = new QSqlTableModel(0, db);
 
     srtbl1->setTable("send_mail");
     srtbl1->setRelation(2, QSqlRelation("directory", "id_directory", "directory_name"));
     srtbl1->setEditStrategy(QSqlTableModel::OnManualSubmit);
     srtbl1->select();
+    srtbl1->setHeaderData(1, Qt::Horizontal, "Дата отправленного сообщения");
+    srtbl1->setHeaderData(2, Qt::Horizontal, "Адрес получателя");
+    srtbl1->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
+    srtbl1->setHeaderData(4, Qt::Horizontal, "Файл отправленного сообщения");
     srtbl2->setTable("received_mail");
     srtbl2->setRelation(2, QSqlRelation("directory", "id_directory", "directory_name"));
     srtbl2->setEditStrategy(QSqlTableModel::OnManualSubmit);
     srtbl2->select();
+    srtbl2->setHeaderData(1, Qt::Horizontal, "Дата полученного сообщения");
+    srtbl2->setHeaderData(2, Qt::Horizontal, "Адрес отправителя");
+    srtbl2->setHeaderData(3, Qt::Horizontal, "Информация о сообщении");
+    srtbl2->setHeaderData(4, Qt::Horizontal, "Файл полученного сообщения");
     sqtbl3->setTable("directory");
     sqtbl3->select();
     sqtbl3->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -113,6 +102,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl2->setModel(srtbl2);
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tbl2->setItemDelegate(new QSqlRelationalDelegate(tbl2));
     tbl3->setModel(sqtbl3);
     tbl3->setColumnHidden(0, true);
     tbl3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -123,13 +113,23 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     connect(add_record, SIGNAL(triggered()), this, SLOT(insert_db()));
     connect(delete_record, SIGNAL(triggered()), this, SLOT(delete_db()));
-    connect(submit, SIGNAL(clicked()), srtbl1, SLOT(submitAll()));
+    connect(submit, SIGNAL(clicked()), this, SLOT(submit_db()));
+    connect(revert, SIGNAL(clicked()), this, SLOT(revert_db()));
 }
 
 void MainWidget::insert_db()
 {
-    qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
-    st_bar->showMessage("Строка добавлена!");
+    int index_tab = tab->currentIndex();
+    if (index_tab == 0)
+    {
+        qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
+    } else if (index_tab == 1)
+    {
+        qDebug() << "insert in 2 table" << srtbl2->insertRow(srtbl2->rowCount());
+    } else if (index_tab == 2)
+    {
+        qDebug() << "insert in 3 table" << sqtbl3->insertRow(sqtbl3->rowCount());
+    }
 }
 
 void MainWidget::delete_db()
@@ -140,6 +140,53 @@ void MainWidget::delete_db()
         qDebug() << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
     }
     st_bar->showMessage("Строка удалена!");
+}
+
+void MainWidget::submit_db()
+{
+    int index_tab = tab->currentIndex();
+    if (index_tab == 0)
+    {
+        srtbl1->submitAll();
+        st_bar->showMessage("Успешно!");
+    } else if (index_tab == 1)
+    {
+        srtbl2->submitAll();
+        st_bar->showMessage("Успешно!");
+    } else if(index_tab == 2)
+    {
+        sqtbl3->submitAll();
+        st_bar->showMessage("Успешно!");
+    }
+}
+
+void MainWidget::revert_db()
+{
+    int index_tab = tab->currentIndex();
+    if (index_tab == 0)
+    {
+        //srtbl1->revertAll();
+        QStringList str;
+        QModelIndex index;
+        QString path_dir = "C:/Users/bazunaka/Documents/testmail";
+        QDir dir(path_dir);
+        for (int i = 0; i < tbl1->model()->rowCount(); i++)
+        {
+            index = tbl1->model()->index(i, 1);
+            str.append(index.data().toString());
+        }
+        qDebug() << str;
+        for (int a = 0; a < str.count(); a++)
+        {
+            if (!dir.exists(str[a]))
+            {
+                dir.mkdir(str[a]);
+            }
+        }
+    } else if (index_tab == 1)
+    {
+        srtbl2->revertAll();
+    }
 }
 
 MainWidget::~MainWidget()
