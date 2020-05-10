@@ -165,27 +165,31 @@ void MainWidget::revert_db()
     int index_tab = tab->currentIndex();
     if (index_tab == 0)
     {
-        //srtbl1->revertAll();
-        QStringList str;
-        QModelIndex index;
-        QString path_dir = "C:/Users/bazunaka/Documents/testmail";
-        QDir dir(path_dir);
-        for (int i = 0; i < tbl1->model()->rowCount(); i++)
-        {
-            index = tbl1->model()->index(i, 1);
-            str.append(index.data().toString());
-        }
-        qDebug() << str;
-        for (int a = 0; a < str.count(); a++)
-        {
-            if (!dir.exists(str[a]))
-            {
-                dir.mkdir(str[a]);
-            }
-        }
+        srtbl1->revertAll();
     } else if (index_tab == 1)
     {
         srtbl2->revertAll();
+    }
+}
+
+void MainWidget::create_folder()
+{
+    QStringList str;
+    QModelIndex index;
+    QString path_dir = "C:/Users/bazunaka/Documents/testmail";
+    QDir dir(path_dir);
+    for (int i = 0; i < tbl1->model()->rowCount(); i++)
+    {
+        index = tbl1->model()->index(i, 1);
+        str.append(index.data().toString());
+    }
+    qDebug() << str;
+    for (int a = 0; a < str.count(); a++)
+    {
+        if (!dir.exists(str[a]))
+        {
+            dir.mkdir(str[a]);
+        }
     }
 }
 
