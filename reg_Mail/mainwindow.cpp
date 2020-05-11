@@ -107,6 +107,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl2->setItemDelegate(new QSqlRelationalDelegate(tbl2));
+    tbl2->setSortingEnabled(true);
     tbl3->setModel(sqtbl3);
     tbl3->setColumnHidden(0, true);
     tbl3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -152,11 +153,12 @@ void MainWidget::submit_db()
     if (index_tab == 0)
     {
         srtbl1->submitAll();
-        create_folder(path_dir);
+        create_folder(path_dir, index_tab);
         st_bar->showMessage("Успешно!");
     } else if (index_tab == 1)
     {
         srtbl2->submitAll();
+        create_folder(path_dir, index_tab);
         st_bar->showMessage("Успешно!");
     } else if(index_tab == 2)
     {
@@ -177,12 +179,20 @@ void MainWidget::revert_db()
     }
 }
 
-void MainWidget::create_folder(QString path_dir)
+void MainWidget::create_folder(QString path_dir, int index_tab)
 {
     QString str;
     QModelIndex index;
     QDir dir(path_dir);
-    index = tbl1->model()->index(0, 1);
+    if (index_tab == 0)
+    {
+        index = tbl1->model()->index(0, 1);
+    } else if (index_tab == 1)
+    {
+        index = tbl2->model()->index(0, 1);
+    }
+
+
     str = index.data().toString();
     qDebug() << str << index;
     if (!dir.exists(str))

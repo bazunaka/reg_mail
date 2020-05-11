@@ -64,14 +64,14 @@ static const uint qt_meta_data_MainWidget[] = {
        3,    0,   40,    2, 0x08 /* Private */,
        4,    0,   41,    2, 0x08 /* Private */,
        5,    0,   42,    2, 0x08 /* Private */,
-       6,    1,   43,    2, 0x08 /* Private */,
+       6,    2,   43,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,    2,    2,
 
        0        // eod
 };
@@ -86,7 +86,7 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->delete_db(); break;
         case 2: _t->submit_db(); break;
         case 3: _t->revert_db(); break;
-        case 4: _t->create_folder((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->create_folder((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     }

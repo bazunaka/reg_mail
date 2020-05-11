@@ -58,7 +58,7 @@ private slots:
     void submit_db();
     void revert_db();
 
-    void create_folder(QString);
+    void create_folder(QString, int);
 };
 
 #endif // MAINWINDOW_H
