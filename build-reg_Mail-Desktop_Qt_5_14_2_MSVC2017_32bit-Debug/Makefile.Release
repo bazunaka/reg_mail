@@ -648,6 +648,21 @@ release\moc_mainwindow.cpp: ..\reg_Mail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qtwidgetsversion.h \
 		C:\Qt\5.14.2\msvc2017\include\QtCore\QDebug \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlDatabase \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldatabase.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsqlglobal.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsql-config.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlError \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlerror.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlQueryModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlquerymodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalDelegate \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaldelegate.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldriver.h \
 		release\moc_predefs.h \
 		C:\Qt\5.14.2\msvc2017\bin\moc.exe
 	C:\Qt\5.14.2\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/release/moc_predefs.h -IC:/Qt/5.14.2/msvc2017/mkspecs/win32-msvc -IC:/Users/bazunaka/Documents/GitHub/reg_mail/reg_Mail -IC:/Qt/5.14.2/msvc2017/include -IC:/Qt/5.14.2/msvc2017/include/QtWidgets -IC:/Qt/5.14.2/msvc2017/include/QtGui -IC:/Qt/5.14.2/msvc2017/include/QtANGLE -IC:/Qt/5.14.2/msvc2017/include/QtSql -IC:/Qt/5.14.2/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt" ..\reg_Mail\mainwindow.h -o release\moc_mainwindow.cpp
@@ -1142,7 +1157,22 @@ release\main.obj: ..\reg_Mail\main.cpp ..\reg_Mail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qwidgetaction.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qtwidgetsversion.h \
-		C:\Qt\5.14.2\msvc2017\include\QtCore\QDebug
+		C:\Qt\5.14.2\msvc2017\include\QtCore\QDebug \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlDatabase \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldatabase.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsqlglobal.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsql-config.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlError \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlerror.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlQueryModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlquerymodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalDelegate \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaldelegate.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldriver.h
 
 release\mainwindow.obj: ..\reg_Mail\mainwindow.cpp ..\reg_Mail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\QMainWindow \
@@ -1616,7 +1646,22 @@ release\mainwindow.obj: ..\reg_Mail\mainwindow.cpp ..\reg_Mail\mainwindow.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qwidgetaction.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qwizard.h \
 		C:\Qt\5.14.2\msvc2017\include\QtWidgets\qtwidgetsversion.h \
-		C:\Qt\5.14.2\msvc2017\include\QtCore\QDebug
+		C:\Qt\5.14.2\msvc2017\include\QtCore\QDebug \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlDatabase \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldatabase.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsqlglobal.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qtsql-config.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlError \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlerror.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlQueryModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlquerymodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalTableModel \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaltablemodel.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\QSqlRelationalDelegate \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqlrelationaldelegate.h \
+		C:\Qt\5.14.2\msvc2017\include\QtSql\qsqldriver.h
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 

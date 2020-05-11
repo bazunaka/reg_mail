@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 
+QString path_dir;
+
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
     tab                      = new QTabWidget(this);
@@ -48,6 +50,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     QString db_name         = settings->value("db_connect/db_name").toString();
     QString db_user           = settings->value("db_connect/db_user").toString();
     QString db_password   = settings->value("db_connect/db_password").toString();
+    path_dir                        =settings->value("ftp_connect/ftp_host").toString();
 
     db = QSqlDatabase::addDatabase(db_driver);
     db.setHostName(db_host);
@@ -99,6 +102,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl1->setColumnHidden(0, true);
     tbl1->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl1->setItemDelegate(new QSqlRelationalDelegate(tbl1));
+    tbl1->setSortingEnabled(true);
     tbl2->setModel(srtbl2);
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -148,6 +152,7 @@ void MainWidget::submit_db()
     if (index_tab == 0)
     {
         srtbl1->submitAll();
+        create_folder(path_dir);
         st_bar->showMessage("Успешно!");
     } else if (index_tab == 1)
     {
@@ -172,24 +177,17 @@ void MainWidget::revert_db()
     }
 }
 
-void MainWidget::create_folder()
+void MainWidget::create_folder(QString path_dir)
 {
-    QStringList str;
+    QString str;
     QModelIndex index;
-    QString path_dir = "C:/Users/bazunaka/Documents/testmail";
     QDir dir(path_dir);
-    for (int i = 0; i < tbl1->model()->rowCount(); i++)
+    index = tbl1->model()->index(0, 1);
+    str = index.data().toString();
+    qDebug() << str << index;
+    if (!dir.exists(str))
     {
-        index = tbl1->model()->index(i, 1);
-        str.append(index.data().toString());
-    }
-    qDebug() << str;
-    for (int a = 0; a < str.count(); a++)
-    {
-        if (!dir.exists(str[a]))
-        {
-            dir.mkdir(str[a]);
-        }
+        dir.mkdir(str);
     }
 }
 

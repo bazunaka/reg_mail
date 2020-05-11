@@ -11,6 +11,7 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlRelationalDelegate>
 
+
 class MainWidget : public QWidget
 {
     Q_OBJECT
@@ -56,6 +57,8 @@ private slots:
 
     void submit_db();
     void revert_db();
+
+    void create_folder(QString);
 };
 
 #endif // MAINWINDOW_H
