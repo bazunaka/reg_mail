@@ -20,6 +20,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     add_record    = pmnu1->addAction("Добавить строку");
     delete_record = pmnu1->addAction("Удалить запись");
+    add_file         = pmnu1->addAction("Добавить файл...");
 
     mnu_bar->addMenu(pmnu1);
     mnu_bar->addMenu(pmnu2);
@@ -120,6 +121,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     connect(delete_record, SIGNAL(triggered()), this, SLOT(delete_db()));
     connect(submit, SIGNAL(clicked()), this, SLOT(submit_db()));
     connect(revert, SIGNAL(clicked()), this, SLOT(revert_db()));
+    connect(add_file, SIGNAL(triggered()), this, SLOT(name_file()));
 }
 
 void MainWidget::insert_db()
@@ -191,14 +193,19 @@ void MainWidget::create_folder(QString path_dir, int index_tab)
     {
         index = tbl2->model()->index(0, 1);
     }
-
-
     str = index.data().toString();
     qDebug() << str << index;
     if (!dir.exists(str))
     {
         dir.mkdir(str);
     }
+}
+
+QString MainWidget::name_file()
+{
+    //qDebug() << QFileDialog::getOpenFileName();
+    QString name_file = QFileDialog::getOpenFileName();
+    return name_file;
 }
 
 MainWidget::~MainWidget()

@@ -41,6 +41,7 @@ private:
     QSqlQueryModel model2;
     QAction               *add_record;
     QAction               *delete_record;
+    QAction               *add_file;
     QPushButton        *submit;
     QPushButton        *revert;
 
@@ -59,6 +60,8 @@ private slots:
     void revert_db();
 
     void create_folder(QString, int);
+
+    QString name_file();
 };
 
 #endif // MAINWINDOW_H
