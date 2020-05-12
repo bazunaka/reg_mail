@@ -104,6 +104,8 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl1->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tbl1->setItemDelegate(new QSqlRelationalDelegate(tbl1));
     tbl1->setSortingEnabled(true);
+    tbl1->resizeRowsToContents();
+    tbl1->resizeColumnsToContents();
     tbl2->setModel(srtbl2);
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -171,7 +173,7 @@ void MainWidget::submit_db()
 
 void MainWidget::revert_db()
 {
-    int index_tab = tab->currentIndex();
+    /*int index_tab = tab->currentIndex();
     if (index_tab == 0)
     {
         srtbl1->revertAll();
@@ -179,6 +181,10 @@ void MainWidget::revert_db()
     {
         srtbl2->revertAll();
     }
+    QModelIndex index;
+    index = tbl1->model()->index(0, 4);
+    qDebug() << tbl1->model()->data(index);
+    tbl1->setIndexWidget(index, new QLabel);*/
 }
 
 void MainWidget::create_folder(QString path_dir, int index_tab)
@@ -203,8 +209,15 @@ void MainWidget::create_folder(QString path_dir, int index_tab)
 
 QString MainWidget::name_file()
 {
-    //qDebug() << QFileDialog::getOpenFileName();
+
     QString name_file = QFileDialog::getOpenFileName();
+    QFile file(name_file);
+    QFileInfo inf(file);
+    QModelIndex index = srtbl1->index(srtbl1->rowCount() - 1, 4);
+    qDebug() << tbl1->model()->data(index);
+    tbl1->setIndexWidget(index, new QLabel(inf.fileName()));
+    tbl1->resizeColumnsToContents();
+    qDebug() << inf.isFile() << inf.fileName();
     return name_file;
 }
 
