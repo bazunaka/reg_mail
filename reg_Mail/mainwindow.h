@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QSqlQueryModel>
+#include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include <QSqlRelationalDelegate>
@@ -37,8 +37,6 @@ private:
     QSqlRelationalTableModel *srtbl1;
     QSqlRelationalTableModel *srtbl2;
     QSqlTableModel  *sqtbl3;
-    QSqlQueryModel model1;
-    QSqlQueryModel model2;
     QAction               *add_record;
     QAction               *delete_record;
     QAction               *add_file;

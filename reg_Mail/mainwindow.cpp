@@ -39,8 +39,8 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(horizontalLayout);
     mainLayout->addWidget(st_bar);
 
-    setMinimumSize(850, 450);
-    resize(850, 450);
+    setMinimumSize(900, 600);
+    resize(900, 600);
     setWindowTitle("Учет электронных сообщений ЭП АСЗИ Цитрин");
 
     settings = new QSettings("settings.ini", QSettings::IniFormat);
@@ -105,7 +105,6 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl1->setItemDelegate(new QSqlRelationalDelegate(tbl1));
     tbl1->setSortingEnabled(true);
     tbl1->resizeRowsToContents();
-    tbl1->resizeColumnsToContents();
     tbl2->setModel(srtbl2);
     tbl2->setColumnHidden(0, true);
     tbl2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -130,7 +129,7 @@ void MainWidget::insert_db()
 {
     int index_tab = tab->currentIndex();
     if (index_tab == 0)
-    {
+    {   
         qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
     } else if (index_tab == 1)
     {
@@ -180,11 +179,32 @@ void MainWidget::revert_db()
     } else if (index_tab == 1)
     {
         srtbl2->revertAll();
-    }
+    }*/
     QModelIndex index;
-    index = tbl1->model()->index(0, 4);
+    index = tbl1->model()->index(tbl1->model()->rowCount()-1, 4);
     qDebug() << tbl1->model()->data(index);
-    tbl1->setIndexWidget(index, new QLabel);*/
+    tbl1->model()->setData(index, "qwe");
+    //tbl1->setIndexWidget(index, new QTextLine);
+    /*QString st,val;
+    QStringList str;
+    QModelIndex index;
+    QSqlQuery query;
+    for (int i = 1; i < tbl1->model()->columnCount(); i++)
+    {
+        index = tbl1->model()->index(tbl1->model()->rowCount()-1, i);
+        st = tbl1->model()->data(index).toString();
+        str.append(st);
+    }
+    qDebug() << str;
+
+    QString strF = "INSERT INTO send_mail (send_mail_date, send_mail_recipient, send_mail_inf, send_file_url) "
+               "VALUES ('%1', '%2', '%3', '%4');";
+
+    val = strF.arg(str[0])
+                  .arg(str[1])
+                  .arg(str[2])
+                  .arg(str[3]);
+    query.exec(val);*/
 }
 
 void MainWidget::create_folder(QString path_dir, int index_tab)
@@ -215,7 +235,7 @@ QString MainWidget::name_file()
     QFileInfo inf(file);
     QModelIndex index = srtbl1->index(srtbl1->rowCount() - 1, 4);
     qDebug() << tbl1->model()->data(index);
-    tbl1->setIndexWidget(index, new QLabel(inf.fileName()));
+    tbl1->setIndexWidget(index, new QLabel (inf.fileName()));
     tbl1->resizeColumnsToContents();
     qDebug() << inf.isFile() << inf.fileName();
     return name_file;
