@@ -33,7 +33,7 @@ private:
     QVBoxLayout     *mainLayout;
     QSettings             *settings;
     QStatusBar          *st_bar;
-    QSqlDatabase      db;  
+    QSqlDatabase      db;
     QSqlRelationalTableModel *srtbl1;
     QSqlRelationalTableModel *srtbl2;
     QSqlTableModel  *sqtbl3;
@@ -43,12 +43,12 @@ private:
     QPushButton        *submit;
     QPushButton        *revert;
 
-    QString *db_driver;
+    /*QString *db_driver;
     QString *db_drv_string;
     QString *db_host;
     QString *db_name;
     QString *db_user;
-    QString *db_password;
+    QString *db_password;*/
 
 private slots:
     void insert_db();
