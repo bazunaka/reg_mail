@@ -11,7 +11,6 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlRelationalDelegate>
 
-
 class MainWidget : public QWidget
 {
     Q_OBJECT
@@ -31,9 +30,7 @@ private:
     QHBoxLayout     *horizontalLayout;
     QVBoxLayout     *verticalLayout;
     QVBoxLayout     *mainLayout;
-    QSettings             *settings;
     QStatusBar          *st_bar;
-    QSqlDatabase      db;
     QSqlRelationalTableModel *srtbl1;
     QSqlRelationalTableModel *srtbl2;
     QSqlTableModel  *sqtbl3;

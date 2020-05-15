@@ -1,8 +1,8 @@
 #include "mainwindow.h"
-//#include "connectdatabase.h"
+#include "connectdatabase.h"
 
 QString path_dir;
-//ConnectDatabase cntDb;
+ConnectDatabase cntDb;
 
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
@@ -45,33 +45,22 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     resize(900, 600);
     setWindowTitle("Учет электронных сообщений ЭП АСЗИ Цитрин");
 
-    settings = new QSettings("settings.ini", QSettings::IniFormat);
+    cntDb.settings = new QSettings("settings.ini", QSettings::IniFormat);
 
-    QString db_driver        = settings->value("db_connect/db_driver").toString();
-    QString db_drv_string  = settings->value("db_connect/db_drv_string").toString();
-    QString db_host           = settings->value("db_connect/db_host").toString();
-    QString db_name         = settings->value("db_connect/db_name").toString();
-    QString db_user           = settings->value("db_connect/db_user").toString();
-    QString db_password   = settings->value("db_connect/db_password").toString();
-
-    /*cntDb.settings = new QSettings("settings.ini", QSettings::IniFormat);
     cntDb.db_driver = cntDb.settings->value("db_connect/db_driver").toString();
     cntDb.db_driver_string = cntDb.settings->value("db_connect/db_drv_string").toString();
     cntDb.db_host = cntDb.settings->value("db_connect/db_host").toString();
     cntDb.db_name = cntDb.settings->value("db_connect/db_name").toString();
     cntDb.db_user = cntDb.settings->value("db_connect/db_user").toString();
-    cntDb.db_password = cntDb.settings->value("ftp_connect/ftp_host").toString();*/
+    cntDb.db_password = cntDb.settings->value("db_connect/db_password").toString();
 
     //path_dir = settings->value("ftp_connect/ftp_host").toString();
 
-    /*cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,  cntDb.db_name,
-                    cntDb.db_user, cntDb.db_password);*/
-    db = QSqlDatabase::addDatabase(db_driver);
-    db.setHostName(db_host);
-    db.setDatabaseName("DRIVER={" + db_drv_string + "};DATABASE=" + db_name + ";");
-    db.setUserName(db_user);
-    db.setPassword(db_password);
+    QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
+                                      cntDb.db_name,  cntDb.db_user, cntDb.db_password);
+
     qDebug() << db;
+
     if (db.open())
         {
             st_bar->showMessage("Подключение успешно!");

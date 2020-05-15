@@ -15,7 +15,7 @@ class ConnectDatabase
     QSqlDatabase db;
     QString db_driver, db_driver_string, db_host, db_name, db_user, db_password;
 
-    void connectDB(QString, QString, QString, QString, QString, QString);
+    QSqlDatabase connectDB(QString, QString, QString, QString, QString, QString);
 };
 
 #endif // CONNECTDATABASE_H
