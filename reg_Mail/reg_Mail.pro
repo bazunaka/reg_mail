@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connectdatabase.cpp \
+    loggingcategories.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connectdatabase.h \
+    loggingcategories.h \
     mainwindow.h
 
 # Default rules for deployment.

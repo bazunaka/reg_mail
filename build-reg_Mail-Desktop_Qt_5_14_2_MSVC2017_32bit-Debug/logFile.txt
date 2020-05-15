@@ -1,0 +1,4 @@
+2020-05-15 23:35:09 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-15 23:35:09 INFInfo: "directory"
+2020-05-15 23:35:09 INFInfo: "received_mail"
+2020-05-15 23:35:09 INFInfo: "send_mail"

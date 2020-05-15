@@ -1,8 +1,12 @@
 #include "mainwindow.h"
 #include "connectdatabase.h"
+#include "loggingcategories.h"
 
 QString path_dir;
 ConnectDatabase cntDb;
+QScopedPointer<QFile> m_logFile;
+
+void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
@@ -19,6 +23,10 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     tbl3                      = new QTableView;
     submit                  = new QPushButton(this);
     revert                   = new QPushButton(this);
+
+    m_logFile.reset(new QFile(path_dir + "logFile.txt"));
+    m_logFile.data()->open(QFile::Append | QFile::Text);
+    qInstallMessageHandler(messageHandler);
 
     add_record    = pmnu1->addAction("Добавить строку");
     delete_record = pmnu1->addAction("Удалить запись");
@@ -59,20 +67,20 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
                                       cntDb.db_name,  cntDb.db_user, cntDb.db_password);
 
-    qDebug() << db;
+    qDebug(logDebug()) << db;
 
     if (db.open())
         {
             st_bar->showMessage("Подключение успешно!");
         } else {
             st_bar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
-            qDebug() << db.lastError();
+            qCritical(logCritical()) << db.lastError();
         }
 
     QStringList lst = db.tables();
     foreach (QString str, lst)
     {
-        qDebug() << str;
+        qInfo(logInfo()) << str;
     }
 
     srtbl1 = new QSqlRelationalTableModel(0, db);
@@ -133,15 +141,15 @@ void MainWidget::insert_db()
     if (index_tab == 0)
     {   
         tbl1->scrollToBottom();
-        qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
+        qInfo(logInfo()) << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
     } else if (index_tab == 1)
     {
         tbl2->scrollToBottom();
-        qDebug() << "insert in 2 table" << srtbl2->insertRow(srtbl2->rowCount());
+        qInfo(logInfo()) << "insert in 2 table" << srtbl2->insertRow(srtbl2->rowCount());
     } else if (index_tab == 2)
     {
         tbl3->scrollToBottom();
-        qDebug() << "insert in 3 table" << sqtbl3->insertRow(sqtbl3->rowCount());
+        qInfo(logInfo()) << "insert in 3 table" << sqtbl3->insertRow(sqtbl3->rowCount());
     }
 }
 
@@ -150,7 +158,7 @@ void MainWidget::delete_db()
     int selectedRow = tbl1->currentIndex().row();
     if (selectedRow >= 0)
     {
-        qDebug() << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+       qInfo(logInfo()) << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
     }
     st_bar->showMessage("Строка удалена!");
 }
@@ -217,6 +225,24 @@ QString MainWidget::name_file()
     qDebug() << tbl1->model()->data(index);
     tbl1->model()->setData(index, inf.fileName());
     return name_file;
+}
+
+void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QTextStream out(m_logFile.data());
+    out << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ");
+
+    switch(type)
+    {
+    case QtInfoMsg:            out << "INF"; break;
+    case QtDebugMsg:        out << "DBG"; break;
+    case QtWarningMsg:     out << "WRN"; break;
+    case QtCriticalMsg:       out << "CRT"; break;
+    case QtFatalMsg:          out << "FTL"; break;
+    }
+
+    out << context.category << ": " << msg << endl;
+    out.flush();
 }
 
 MainWidget::~MainWidget()
