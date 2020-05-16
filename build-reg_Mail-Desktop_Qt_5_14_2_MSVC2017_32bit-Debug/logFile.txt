@@ -168,3 +168,18 @@
 2020-05-16 20:15:42 INFInfo: Create directory  "2000-01-04"  to  "C:/Users/bazunaka/Documents/testmail"
 2020-05-16 20:15:42 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-04"
 2020-05-16 20:15:42 INFInfo: submit for  0  tab
+2020-05-16 20:46:55 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 20:46:55 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-16 20:46:55 INFInfo: "directory"
+2020-05-16 20:46:55 INFInfo: "received_mail"
+2020-05-16 20:46:55 INFInfo: "send_mail"
+2020-05-16 20:49:34 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 20:49:34 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-16 20:49:34 INFInfo: "directory"
+2020-05-16 20:49:34 INFInfo: "received_mail"
+2020-05-16 20:49:34 INFInfo: "send_mail"
+2020-05-16 21:04:08 DBGDebug: String database connection QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 21:04:08 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-16 21:04:08 INFInfo: Tables into database "directory"
+2020-05-16 21:04:08 INFInfo: Tables into database "received_mail"
+2020-05-16 21:04:08 INFInfo: Tables into database "send_mail"

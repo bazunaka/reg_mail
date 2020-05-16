@@ -68,7 +68,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
                                       cntDb.db_name,  cntDb.db_user, cntDb.db_password);
 
-    qDebug(logDebug()) << db;
+    qDebug(logDebug()) << "String database connection" << db;
     qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;
 
     if (db.open())
@@ -82,7 +82,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     QStringList lst = db.tables();
     foreach (QString str, lst)
     {
-        qInfo(logInfo()) << str;
+        qInfo(logInfo()) << "Tables into database" << str;
     }
 
     srtbl1 = new QSqlRelationalTableModel(0, db);
@@ -143,15 +143,15 @@ void MainWidget::insert_db()
     if (index_tab == 0)
     {   
         tbl1->scrollToBottom();
-        qInfo(logInfo()) << "insert in 1 table" << index_tab << srtbl1->insertRow(srtbl1->rowCount());
+        qInfo(logInfo()) << "Insert in 1 table" << index_tab << srtbl1->insertRow(srtbl1->rowCount());
     } else if (index_tab == 1)
     {
         tbl2->scrollToBottom();
-        qInfo(logInfo()) << "insert in 2 table" << index_tab << srtbl2->insertRow(srtbl2->rowCount());
+        qInfo(logInfo()) << "Insert in 2 table" << index_tab << srtbl2->insertRow(srtbl2->rowCount());
     } else if (index_tab == 2)
     {
         tbl3->scrollToBottom();
-        qInfo(logInfo()) << "insert in 3 table" << index_tab << sqtbl3->insertRow(sqtbl3->rowCount());
+        qInfo(logInfo()) << "Insert in 3 table" << index_tab << sqtbl3->insertRow(sqtbl3->rowCount());
     }
 }
 
@@ -163,21 +163,21 @@ void MainWidget::delete_db()
         int selectedRow = tbl1->currentIndex().row();
         if (selectedRow >= 0)
         {
-           qInfo(logInfo()) << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+           qInfo(logInfo()) << "Deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
         }
     } else if(index_tab == 1)
     {
         int selectedRow = tbl2->currentIndex().row();
         if (selectedRow >= 0)
         {
-           qInfo(logInfo()) << "deleting row in 2 table" << srtbl2->removeRows(selectedRow, 1);
+           qInfo(logInfo()) << "Deleting row in 2 table" << srtbl2->removeRows(selectedRow, 1);
         }
     } else if(index_tab == 2)
     {
         int selectedRow = tbl3->currentIndex().row();
         if (selectedRow >= 0)
         {
-           qInfo(logInfo()) << "deleting row in 3 table" << sqtbl3->removeRows(selectedRow, 1);
+           qInfo(logInfo()) << "Deleting row in 3 table" << sqtbl3->removeRows(selectedRow, 1);
         }
     } else
     {
@@ -202,6 +202,11 @@ void MainWidget::submit_db()
     {
         srtbl2->submitAll();
         create_folder(path_dir, index_tab);
+        QFile file(filename);
+        QFileInfo inf(file);
+        QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
+        st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
         st_bar->showMessage("Успешно!");
         qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if(index_tab == 2)
