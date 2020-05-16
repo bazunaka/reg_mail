@@ -2,3 +2,169 @@
 2020-05-15 23:35:09 INFInfo: "directory"
 2020-05-15 23:35:09 INFInfo: "received_mail"
 2020-05-15 23:35:09 INFInfo: "send_mail"
+2020-05-16 17:19:09 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 17:19:10 INFInfo: "directory"
+2020-05-16 17:19:10 INFInfo: "received_mail"
+2020-05-16 17:19:10 INFInfo: "send_mail"
+2020-05-16 17:19:23 INFInfo: insert in 3 table 2 true
+2020-05-16 17:19:39 INFInfo: submit for  2  tab
+2020-05-16 17:19:58 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:01 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:03 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:06 INFInfo: submit for  1  tab
+2020-05-16 17:20:17 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:21 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:23 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:25 INFInfo: deleting row in 1 table true
+2020-05-16 17:20:26 INFInfo: submit for  0  tab
+2020-05-16 17:51:35 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 17:51:35 INFInfo: "directory"
+2020-05-16 17:51:35 INFInfo: "received_mail"
+2020-05-16 17:51:35 INFInfo: "send_mail"
+2020-05-16 17:51:42 INFInfo: insert in 1 table 0 true
+2020-05-16 17:51:46 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" QFileInfo(C:\Users\bazunaka\Documents\GitHub\reg_mail\build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug\settings.ini)
+2020-05-16 17:51:46 INFInfo: true "settings.ini"
+2020-05-16 17:59:42 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 17:59:42 INFInfo: "directory"
+2020-05-16 17:59:42 INFInfo: "received_mail"
+2020-05-16 17:59:42 INFInfo: "send_mail"
+2020-05-16 17:59:45 INFInfo: insert in 1 table 0 true
+2020-05-16 18:00:11 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:00:11 INFInfo: true "settings.ini"
+2020-05-16 18:00:14 INFInfo: Create directory  "2001-02-15"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:00:14 INFInfo: submit for  0  tab
+2020-05-16 18:01:40 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 18:01:40 INFInfo: "directory"
+2020-05-16 18:01:40 INFInfo: "received_mail"
+2020-05-16 18:01:40 INFInfo: "send_mail"
+2020-05-16 18:01:48 INFInfo: insert in 1 table 0 true
+2020-05-16 18:02:04 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:02:04 INFInfo: true "settings.ini"
+2020-05-16 18:02:06 INFInfo: Create directory  "2001-02-16"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:02:06 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:02:06 INFInfo: submit for  0  tab
+2020-05-16 18:03:35 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 18:03:35 INFInfo: "directory"
+2020-05-16 18:03:35 INFInfo: "received_mail"
+2020-05-16 18:03:35 INFInfo: "send_mail"
+2020-05-16 18:03:43 INFInfo: insert in 1 table 0 true
+2020-05-16 18:04:00 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:04:00 INFInfo: true "settings.ini"
+2020-05-16 18:04:03 INFInfo: Create directory  "2001-02-17"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:04:03 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmailtest.ini"
+2020-05-16 18:04:03 INFInfo: submit for  0  tab
+2020-05-16 18:04:32 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 18:04:33 INFInfo: "directory"
+2020-05-16 18:04:33 INFInfo: "received_mail"
+2020-05-16 18:04:33 INFInfo: "send_mail"
+2020-05-16 18:04:35 INFInfo: insert in 1 table 0 true
+2020-05-16 18:04:50 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:04:50 INFInfo: true "settings.ini"
+2020-05-16 18:04:51 INFInfo: Create directory  "2001-02-18"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:04:51 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmail/test.ini"
+2020-05-16 18:04:51 INFInfo: submit for  0  tab
+2020-05-16 18:06:56 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 18:06:56 INFInfo: "directory"
+2020-05-16 18:06:56 INFInfo: "received_mail"
+2020-05-16 18:06:56 INFInfo: "send_mail"
+2020-05-16 18:07:02 INFInfo: insert in 1 table 0 true
+2020-05-16 18:07:15 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:07:15 INFInfo: true "settings.ini"
+2020-05-16 18:07:17 INFInfo: Create directory  "2001-02-20"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 18:07:17 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 18:07:17 INFInfo: submit for  0  tab
+2020-05-16 19:13:29 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 19:13:29 INFInfo: "directory"
+2020-05-16 19:13:29 INFInfo: "received_mail"
+2020-05-16 19:13:29 INFInfo: "send_mail"
+2020-05-16 19:13:32 INFInfo: insert in 1 table 0 true
+2020-05-16 19:13:49 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 19:13:49 INFInfo: true "settings.ini"
+2020-05-16 19:13:52 INFInfo: Create directory  "2001-03-01"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 19:13:52 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmail/asd.ini"
+2020-05-16 19:13:52 INFInfo: submit for  0  tab
+2020-05-16 19:44:26 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 19:44:26 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  ""
+2020-05-16 19:44:26 INFInfo: "directory"
+2020-05-16 19:44:26 INFInfo: "received_mail"
+2020-05-16 19:44:26 INFInfo: "send_mail"
+2020-05-16 19:44:32 INFInfo: insert in 1 table 0 true
+2020-05-16 19:45:00 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 19:45:00 INFInfo: true "settings.ini"
+2020-05-16 19:45:08 INFInfo: Create directory  "2002-03-03"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 19:45:08 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmail/asd.ini"
+2020-05-16 19:45:08 INFInfo: submit for  0  tab
+2020-05-16 19:45:46 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 19:45:46 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2002-03-03"
+2020-05-16 19:45:46 INFInfo: "directory"
+2020-05-16 19:45:46 INFInfo: "received_mail"
+2020-05-16 19:45:46 INFInfo: "send_mail"
+2020-05-16 19:59:11 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 19:59:11 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2002-03-03"
+2020-05-16 19:59:11 INFInfo: "directory"
+2020-05-16 19:59:11 INFInfo: "received_mail"
+2020-05-16 19:59:11 INFInfo: "send_mail"
+2020-05-16 19:59:13 INFInfo: insert in 1 table 0 true
+2020-05-16 19:59:25 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 19:59:25 INFInfo: true "settings.ini"
+2020-05-16 19:59:27 INFInfo: Create directory  "2000-01-01"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 19:59:27 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" "C:/Users/bazunaka/Documents/testmail/2000-01-01"
+2020-05-16 19:59:27 INFInfo: submit for  0  tab
+2020-05-16 20:03:33 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 20:03:33 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-01"
+2020-05-16 20:03:33 INFInfo: "directory"
+2020-05-16 20:03:33 INFInfo: "received_mail"
+2020-05-16 20:03:33 INFInfo: "send_mail"
+2020-05-16 20:03:36 INFInfo: insert in 1 table 0 true
+2020-05-16 20:03:52 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 20:03:52 INFInfo: true "settings.ini"
+2020-05-16 20:03:54 INFInfo: Create directory  "2000-01-01"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 20:03:54 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-01"
+2020-05-16 20:03:54 INFInfo: submit for  0  tab
+2020-05-16 20:13:18 DBGDebug: QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-16 20:13:18 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-01"
+2020-05-16 20:13:18 INFInfo: "directory"
+2020-05-16 20:13:18 INFInfo: "received_mail"
+2020-05-16 20:13:18 INFInfo: "send_mail"
+2020-05-16 20:13:30 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:33 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:36 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:39 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:42 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:45 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:47 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:50 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:53 INFInfo: deleting row in 1 table true
+2020-05-16 20:13:55 WRNdefault: QFile::copy: Empty or null file name
+2020-05-16 20:13:55 INFInfo: Source file  "" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-01"
+2020-05-16 20:13:55 INFInfo: submit for  0  tab
+2020-05-16 20:14:01 INFInfo: deleting row in 1 table true
+2020-05-16 20:14:03 INFInfo: deleting row in 1 table true
+2020-05-16 20:14:05 INFInfo: deleting row in 1 table true
+2020-05-16 20:14:10 INFInfo: deleting row in 1 table true
+2020-05-16 20:14:12 WRNdefault: QFile::copy: Empty or null file name
+2020-05-16 20:14:12 INFInfo: Source file  "" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-01"
+2020-05-16 20:14:12 INFInfo: submit for  0  tab
+2020-05-16 20:14:15 INFInfo: insert in 1 table 0 true
+2020-05-16 20:14:34 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/logFile.txt"
+2020-05-16 20:14:34 INFInfo: true "logFile.txt"
+2020-05-16 20:14:39 INFInfo: Create directory  "2000-01-02"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 20:14:39 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/logFile.txt" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-02"
+2020-05-16 20:14:39 INFInfo: submit for  0  tab
+2020-05-16 20:14:43 INFInfo: insert in 1 table 0 true
+2020-05-16 20:14:56 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 20:14:56 INFInfo: true "settings.ini"
+2020-05-16 20:14:57 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-02"
+2020-05-16 20:14:57 INFInfo: submit for  0  tab
+2020-05-16 20:15:06 INFInfo: insert in 1 table 0 true
+2020-05-16 20:15:20 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/logFile.txt"
+2020-05-16 20:15:20 INFInfo: true "logFile.txt"
+2020-05-16 20:15:24 INFInfo: Create directory  "2000-01-03"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 20:15:24 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/logFile.txt" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-03"
+2020-05-16 20:15:24 INFInfo: submit for  0  tab
+2020-05-16 20:15:26 INFInfo: insert in 1 table 0 true
+2020-05-16 20:15:41 INFInfo: "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini"
+2020-05-16 20:15:41 INFInfo: true "settings.ini"
+2020-05-16 20:15:42 INFInfo: Create directory  "2000-01-04"  to  "C:/Users/bazunaka/Documents/testmail"
+2020-05-16 20:15:42 INFInfo: Source file  "C:/Users/bazunaka/Documents/GitHub/reg_mail/build-reg_Mail-Desktop_Qt_5_14_2_MSVC2017_32bit-Debug/settings.ini" Destination file  "C:/Users/bazunaka/Documents/testmail/2000-01-04"
+2020-05-16 20:15:42 INFInfo: submit for  0  tab

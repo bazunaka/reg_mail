@@ -2,7 +2,7 @@
 #include "connectdatabase.h"
 #include "loggingcategories.h"
 
-QString path_dir;
+QString path_dir, filename, dest_dir;
 ConnectDatabase cntDb;
 QScopedPointer<QFile> m_logFile;
 
@@ -62,12 +62,14 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     cntDb.db_user = cntDb.settings->value("db_connect/db_user").toString();
     cntDb.db_password = cntDb.settings->value("db_connect/db_password").toString();
 
-    //path_dir = settings->value("ftp_connect/ftp_host").toString();
+    path_dir = cntDb.settings->value("ftp_connect/ftp_host").toString();
+    dest_dir = cntDb.settings->value("last_dir/last_dir").toString();
 
     QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
                                       cntDb.db_name,  cntDb.db_user, cntDb.db_password);
 
     qDebug(logDebug()) << db;
+    qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;
 
     if (db.open())
         {
@@ -163,23 +165,23 @@ void MainWidget::delete_db()
         {
            qInfo(logInfo()) << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
         }
-        st_bar->showMessage("Строка удалена!");
     } else if(index_tab == 1)
     {
         int selectedRow = tbl2->currentIndex().row();
         if (selectedRow >= 0)
         {
-           qInfo(logInfo()) << "deleting row in 1 table" << srtbl2->removeRows(selectedRow, 1);
+           qInfo(logInfo()) << "deleting row in 2 table" << srtbl2->removeRows(selectedRow, 1);
         }
-        st_bar->showMessage("Строка удалена!");
-    } else if
+    } else if(index_tab == 2)
     {
         int selectedRow = tbl3->currentIndex().row();
         if (selectedRow >= 0)
         {
-           qInfo(logInfo()) << "deleting row in 1 table" << sqtbl3->removeRows(selectedRow, 1);
+           qInfo(logInfo()) << "deleting row in 3 table" << sqtbl3->removeRows(selectedRow, 1);
         }
-        st_bar->showMessage("Строка удалена!");
+    } else
+    {
+        qCritical(logCritical()) << "Error deleting in " << index_tab << " tab";
     }
 }
 
@@ -190,16 +192,23 @@ void MainWidget::submit_db()
     {
         srtbl1->submitAll();
         create_folder(path_dir, index_tab);
+        QFile file(filename);
+        QFileInfo inf(file);
+        QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if (index_tab == 1)
     {
         srtbl2->submitAll();
         create_folder(path_dir, index_tab);
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if(index_tab == 2)
     {
         sqtbl3->submitAll();
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     }
 }
 
@@ -217,7 +226,6 @@ void MainWidget::revert_db()
 
 void MainWidget::create_folder(QString path_dir, int index_tab)
 {
-    QString str;
     QModelIndex index;
     QDir dir(path_dir);
     if (index_tab == 0)
@@ -227,24 +235,25 @@ void MainWidget::create_folder(QString path_dir, int index_tab)
     {
         index = tbl2->model()->index(0, 1);
     }
-    str = index.data().toString();
-    qDebug() << str << index;
-    if (!dir.exists(str))
+    if (!dir.exists(index.data().toString()))
     {
-        dir.mkdir(str);
+        dir.mkdir(index.data().toString());
+        cntDb.settings->setValue("last_dir/last_dir", index.data().toString());
+        dest_dir =  cntDb.settings->value("last_dir/last_dir").toString();
+        qInfo(logInfo()) << "Create directory " << index.data().toString() << " to " << path_dir;
     }
 }
 
 QString MainWidget::name_file()
 {
-    QString name_file = QFileDialog::getOpenFileName();
-    QFile file(name_file);
+    filename = QFileDialog::getOpenFileName();
+    QFile file(filename);
+    qInfo(logInfo()) << filename;
     QFileInfo inf(file);
     QModelIndex index = srtbl1->index(srtbl1->rowCount() - 1, 4);
-    qDebug() << inf.isFile() << inf.fileName();
-    qDebug() << tbl1->model()->data(index);
+    qInfo(logInfo()) << inf.isFile() << inf.fileName();
     tbl1->model()->setData(index, inf.fileName());
-    return name_file;
+    return filename;
 }
 
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
