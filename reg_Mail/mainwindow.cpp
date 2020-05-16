@@ -141,26 +141,46 @@ void MainWidget::insert_db()
     if (index_tab == 0)
     {   
         tbl1->scrollToBottom();
-        qInfo(logInfo()) << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
+        qInfo(logInfo()) << "insert in 1 table" << index_tab << srtbl1->insertRow(srtbl1->rowCount());
     } else if (index_tab == 1)
     {
         tbl2->scrollToBottom();
-        qInfo(logInfo()) << "insert in 2 table" << srtbl2->insertRow(srtbl2->rowCount());
+        qInfo(logInfo()) << "insert in 2 table" << index_tab << srtbl2->insertRow(srtbl2->rowCount());
     } else if (index_tab == 2)
     {
         tbl3->scrollToBottom();
-        qInfo(logInfo()) << "insert in 3 table" << sqtbl3->insertRow(sqtbl3->rowCount());
+        qInfo(logInfo()) << "insert in 3 table" << index_tab << sqtbl3->insertRow(sqtbl3->rowCount());
     }
 }
 
 void MainWidget::delete_db()
 {
-    int selectedRow = tbl1->currentIndex().row();
-    if (selectedRow >= 0)
+    int index_tab = tab->currentIndex();
+    if(index_tab == 0)
     {
-       qInfo(logInfo()) << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+        int selectedRow = tbl1->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+        }
+        st_bar->showMessage("Строка удалена!");
+    } else if(index_tab == 1)
+    {
+        int selectedRow = tbl2->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "deleting row in 1 table" << srtbl2->removeRows(selectedRow, 1);
+        }
+        st_bar->showMessage("Строка удалена!");
+    } else if
+    {
+        int selectedRow = tbl3->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "deleting row in 1 table" << sqtbl3->removeRows(selectedRow, 1);
+        }
+        st_bar->showMessage("Строка удалена!");
     }
-    st_bar->showMessage("Строка удалена!");
 }
 
 void MainWidget::submit_db()
