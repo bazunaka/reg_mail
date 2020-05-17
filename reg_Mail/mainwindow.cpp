@@ -30,7 +30,9 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     add_record    = pmnu1->addAction("Добавить строку");
     delete_record = pmnu1->addAction("Удалить запись");
+    pmnu1->addSeparator();
     add_file         = pmnu1->addAction("Добавить файл...");
+    open_file       = pmnu1->addAction("Открыть папку с файлом...");
 
     mnu_bar->addMenu(pmnu1);
     mnu_bar->addMenu(pmnu2);
@@ -187,14 +189,15 @@ void MainWidget::delete_db()
 
 void MainWidget::submit_db()
 {
+    QFile file(filename);
+    QFileInfo inf(file);
+    QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
+
     int index_tab = tab->currentIndex();
     if (index_tab == 0)
-    {
+    {        
         srtbl1->submitAll();
-        create_folder(path_dir, index_tab);
-        QFile file(filename);
-        QFileInfo inf(file);
-        QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
+        create_folder(path_dir, index_tab);              
         st_bar->showMessage("Успешно!");
         qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
         qInfo(logInfo()) << "submit for " << index_tab << " tab";
@@ -202,12 +205,8 @@ void MainWidget::submit_db()
     {
         srtbl2->submitAll();
         create_folder(path_dir, index_tab);
-        QFile file(filename);
-        QFileInfo inf(file);
-        QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
         st_bar->showMessage("Успешно!");
         qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
-        st_bar->showMessage("Успешно!");
         qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if(index_tab == 2)
     {

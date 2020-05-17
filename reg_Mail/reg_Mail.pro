@@ -36,3 +36,8 @@ RESOURCES +=
 DISTFILES +=
 
 RC_ICONS = mail.ico
+
+win32:{
+          VERSION = 1.0.0
+          QMAKE_TARGET_COPYRIGHT = Storozhok A.A.
+}

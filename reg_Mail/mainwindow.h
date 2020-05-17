@@ -39,6 +39,7 @@ private:
     QAction               *add_record;
     QAction               *delete_record;
     QAction               *add_file;
+    QAction               *open_file;
     QPushButton        *submit;
     QPushButton        *revert;
 
