@@ -19,7 +19,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I..\reg_Mail -I. -IC:\Qt\5.14.2\msvc2017\include -IC:\Qt\5.14.2\msvc2017\include\QtWidgets -IC:\Qt\5.14.2\msvc2017\include\QtGui -IC:\Qt\5.14.2\msvc2017\include\QtANGLE -IC:\Qt\5.14.2\msvc2017\include\QtSql -IC:\Qt\5.14.2\msvc2017\include\QtCore -Irelease -I/include -IC:\Qt\5.14.2\msvc2017\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /OPT:REF /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Core.lib  C:\Qt\5.14.2\msvc2017\lib\qtmain.lib /LIBPATH:C:\opensslx86\lib /LIBPATH:C:\Utils\my_sql\mysql-5.7.25-win32\lib /LIBPATH:C:\Utils\postgresqlx86\pgsql\lib shell32.lib 
+LIBS          = C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Core.lib release\reg_Mail_resource.res  C:\Qt\5.14.2\msvc2017\lib\qtmain.lib /LIBPATH:C:\opensslx86\lib /LIBPATH:C:\Utils\my_sql\mysql-5.7.25-win32\lib /LIBPATH:C:\Utils\postgresqlx86\pgsql\lib shell32.lib 
 QMAKE         = C:\Qt\5.14.2\msvc2017\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\reg_Mail_resource.res
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -140,11 +140,14 @@ DESTDIR_TARGET = release\reg_Mail.exe
 first: all
 all: Makefile.Release  release\reg_Mail.exe
 
-release\reg_Mail.exe: C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Core.lib C:\Qt\5.14.2\msvc2017\lib\qtmain.lib $(OBJECTS) 
+release\reg_Mail.exe: C:\Qt\5.14.2\msvc2017\lib\Qt5Widgets.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Gui.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Sql.lib C:\Qt\5.14.2\msvc2017\lib\Qt5Core.lib C:\Qt\5.14.2\msvc2017\lib\qtmain.lib $(OBJECTS) release\reg_Mail_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 release\connectdatabase.obj release\loggingcategories.obj release\main.obj release\mainwindow.obj release\moc_mainwindow.obj
 $(LIBS)
 <<
+
+release\reg_Mail_resource.res: reg_Mail_resource.rc
+	rc /NOLOGO $(DEFINES) -fo release\reg_Mail_resource.res reg_Mail_resource.rc
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\reg_Mail\reg_Mail.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -156,6 +159,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\connectdatabase.obj release\loggingcategories.obj release\main.obj release\mainwindow.obj release\moc_mainwindow.obj
+	-$(DEL_FILE) release\reg_Mail_resource.res
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash

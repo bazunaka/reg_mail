@@ -183,3 +183,8 @@
 2020-05-16 21:04:08 INFInfo: Tables into database "directory"
 2020-05-16 21:04:08 INFInfo: Tables into database "received_mail"
 2020-05-16 21:04:08 INFInfo: Tables into database "send_mail"
+2020-05-17 11:33:22 DBGDebug: String database connection QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-17 11:33:22 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-17 11:33:22 INFInfo: Tables into database "directory"
+2020-05-17 11:33:22 INFInfo: Tables into database "received_mail"
+2020-05-17 11:33:22 INFInfo: Tables into database "send_mail"

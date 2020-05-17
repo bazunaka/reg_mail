@@ -34,3 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES +=
 
 DISTFILES +=
+
+RC_ICONS = mail.ico
