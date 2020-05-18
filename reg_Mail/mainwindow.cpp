@@ -66,9 +66,10 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     /*cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,  cntDb.db_name,
                     cntDb.db_user, cntDb.db_password);*/
-    db = QSqlDatabase::addDatabase(db_driver);
+
+    db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName(db_host);
-    db.setDatabaseName("DRIVER={" + db_drv_string + "};DATABASE=" + db_name + ";");
+    //db.setDatabaseName("DRIVER={" + db_drv_string + "};DATABASE=" + db_name + ";");
     db.setUserName(db_user);
     db.setPassword(db_password);
     qDebug() << db;
