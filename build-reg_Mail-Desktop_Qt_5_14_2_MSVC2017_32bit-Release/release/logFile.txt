@@ -1,0 +1,10 @@
+2020-05-17 12:07:53 WRNdefault: QSqlDatabase:  driver not loaded
+2020-05-17 12:07:53 WRNdefault: QSqlDatabase: available drivers: QSQLITE QODBC QODBC3 QPSQL QPSQL7
+2020-05-17 12:07:53 DBGDebug: String database connection QSqlDatabase(invalid)
+2020-05-17 12:07:53 INFInfo: Start parametrs: path_dir =  "" and dest_dir =  ""
+2020-05-17 12:07:53 CRTCritical: QSqlError("", "Driver not loaded", "Driver not loaded")
+2020-05-17 12:08:45 DBGDebug: String database connection QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-17 12:08:45 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-17 12:08:45 INFInfo: Tables into database "directory"
+2020-05-17 12:08:45 INFInfo: Tables into database "received_mail"
+2020-05-17 12:08:45 INFInfo: Tables into database "send_mail"

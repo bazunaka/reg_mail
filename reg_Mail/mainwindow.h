@@ -10,7 +10,8 @@
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include <QSqlRelationalDelegate>
-
+#include <QDateTime>
+#include <QScopedPointer>
 
 class MainWidget : public QWidget
 {
@@ -31,24 +32,16 @@ private:
     QHBoxLayout     *horizontalLayout;
     QVBoxLayout     *verticalLayout;
     QVBoxLayout     *mainLayout;
-    QSettings             *settings;
     QStatusBar          *st_bar;
-    QSqlDatabase      db;
     QSqlRelationalTableModel *srtbl1;
     QSqlRelationalTableModel *srtbl2;
     QSqlTableModel  *sqtbl3;
     QAction               *add_record;
     QAction               *delete_record;
     QAction               *add_file;
+    QAction               *open_file;
     QPushButton        *submit;
     QPushButton        *revert;
-
-    /*QString *db_driver;
-    QString *db_drv_string;
-    QString *db_host;
-    QString *db_name;
-    QString *db_user;
-    QString *db_password;*/
 
 private slots:
     void insert_db();

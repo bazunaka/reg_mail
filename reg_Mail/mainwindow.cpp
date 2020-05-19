@@ -1,8 +1,12 @@
 #include "mainwindow.h"
-//#include "connectdatabase.h"
+#include "connectdatabase.h"
+#include "loggingcategories.h"
 
-QString path_dir;
-//ConnectDatabase cntDb;
+QString path_dir, filename, dest_dir;
+ConnectDatabase cntDb;
+QScopedPointer<QFile> m_logFile;
+
+void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
@@ -20,9 +24,15 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     submit                  = new QPushButton(this);
     revert                   = new QPushButton(this);
 
+    m_logFile.reset(new QFile(path_dir + "logFile.txt"));
+    m_logFile.data()->open(QFile::Append | QFile::Text);
+    qInstallMessageHandler(messageHandler);
+
     add_record    = pmnu1->addAction("Добавить строку");
     delete_record = pmnu1->addAction("Удалить запись");
+    pmnu1->addSeparator();
     add_file         = pmnu1->addAction("Добавить файл...");
+    open_file       = pmnu1->addAction("Открыть папку с файлом...");
 
     mnu_bar->addMenu(pmnu1);
     mnu_bar->addMenu(pmnu2);
@@ -45,21 +55,14 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     resize(900, 600);
     setWindowTitle("Учет электронных сообщений ЭП АСЗИ Цитрин");
 
-    settings = new QSettings("settings.ini", QSettings::IniFormat);
+    cntDb.settings = new QSettings("settings.ini", QSettings::IniFormat);
 
-    QString db_driver        = settings->value("db_connect/db_driver").toString();
-    QString db_drv_string  = settings->value("db_connect/db_drv_string").toString();
-    QString db_host           = settings->value("db_connect/db_host").toString();
-    QString db_name         = settings->value("db_connect/db_name").toString();
-    QString db_user           = settings->value("db_connect/db_user").toString();
-    QString db_password   = settings->value("db_connect/db_password").toString();
-
-    /*cntDb.settings = new QSettings("settings.ini", QSettings::IniFormat);
     cntDb.db_driver = cntDb.settings->value("db_connect/db_driver").toString();
     cntDb.db_driver_string = cntDb.settings->value("db_connect/db_drv_string").toString();
     cntDb.db_host = cntDb.settings->value("db_connect/db_host").toString();
     cntDb.db_name = cntDb.settings->value("db_connect/db_name").toString();
     cntDb.db_user = cntDb.settings->value("db_connect/db_user").toString();
+<<<<<<< HEAD
     cntDb.db_password = cntDb.settings->value("ftp_connect/ftp_host").toString();*/
 
     //path_dir = settings->value("ftp_connect/ftp_host").toString();
@@ -73,18 +76,31 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     db.setUserName(db_user);
     db.setPassword(db_password);
     qDebug() << db;
+=======
+    cntDb.db_password = cntDb.settings->value("db_connect/db_password").toString();
+
+    path_dir = cntDb.settings->value("ftp_connect/ftp_host").toString();
+    dest_dir = cntDb.settings->value("last_dir/last_dir").toString();
+
+    QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
+                                      cntDb.db_name,  cntDb.db_user, cntDb.db_password);
+
+    qDebug(logDebug()) << "String database connection" << db;
+    qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;
+
+>>>>>>> b0832f76e5b12dc6fbb348793eb1fc5467d354fe
     if (db.open())
         {
             st_bar->showMessage("Подключение успешно!");
         } else {
             st_bar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
-            qDebug() << db.lastError();
+            qCritical(logCritical()) << db.lastError();
         }
 
     QStringList lst = db.tables();
     foreach (QString str, lst)
     {
-        qDebug() << str;
+        qInfo(logInfo()) << "Tables into database" << str;
     }
 
     srtbl1 = new QSqlRelationalTableModel(0, db);
@@ -145,45 +161,74 @@ void MainWidget::insert_db()
     if (index_tab == 0)
     {   
         tbl1->scrollToBottom();
-        qDebug() << "insert in 1 table" << srtbl1->insertRow(srtbl1->rowCount());
+        qInfo(logInfo()) << "Insert in 1 table" << index_tab << srtbl1->insertRow(srtbl1->rowCount());
     } else if (index_tab == 1)
     {
         tbl2->scrollToBottom();
-        qDebug() << "insert in 2 table" << srtbl2->insertRow(srtbl2->rowCount());
+        qInfo(logInfo()) << "Insert in 2 table" << index_tab << srtbl2->insertRow(srtbl2->rowCount());
     } else if (index_tab == 2)
     {
         tbl3->scrollToBottom();
-        qDebug() << "insert in 3 table" << sqtbl3->insertRow(sqtbl3->rowCount());
+        qInfo(logInfo()) << "Insert in 3 table" << index_tab << sqtbl3->insertRow(sqtbl3->rowCount());
     }
 }
 
 void MainWidget::delete_db()
 {
-    int selectedRow = tbl1->currentIndex().row();
-    if (selectedRow >= 0)
+    int index_tab = tab->currentIndex();
+    if(index_tab == 0)
     {
-        qDebug() << "deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+        int selectedRow = tbl1->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "Deleting row in 1 table" << srtbl1->removeRows(selectedRow, 1);
+        }
+    } else if(index_tab == 1)
+    {
+        int selectedRow = tbl2->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "Deleting row in 2 table" << srtbl2->removeRows(selectedRow, 1);
+        }
+    } else if(index_tab == 2)
+    {
+        int selectedRow = tbl3->currentIndex().row();
+        if (selectedRow >= 0)
+        {
+           qInfo(logInfo()) << "Deleting row in 3 table" << sqtbl3->removeRows(selectedRow, 1);
+        }
+    } else
+    {
+        qCritical(logCritical()) << "Error deleting in " << index_tab << " tab";
     }
-    st_bar->showMessage("Строка удалена!");
 }
 
 void MainWidget::submit_db()
 {
+    QFile file(filename);
+    QFileInfo inf(file);
+    QFile::copy(filename, path_dir + "/" + dest_dir + "/" + inf.fileName());
+
     int index_tab = tab->currentIndex();
     if (index_tab == 0)
-    {
+    {        
         srtbl1->submitAll();
-        create_folder(path_dir, index_tab);
+        create_folder(path_dir, index_tab);              
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if (index_tab == 1)
     {
         srtbl2->submitAll();
         create_folder(path_dir, index_tab);
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "Source file " << filename << "Destination file " << path_dir + "/" + dest_dir;
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     } else if(index_tab == 2)
     {
         sqtbl3->submitAll();
         st_bar->showMessage("Успешно!");
+        qInfo(logInfo()) << "submit for " << index_tab << " tab";
     }
 }
 
@@ -201,7 +246,6 @@ void MainWidget::revert_db()
 
 void MainWidget::create_folder(QString path_dir, int index_tab)
 {
-    QString str;
     QModelIndex index;
     QDir dir(path_dir);
     if (index_tab == 0)
@@ -211,24 +255,43 @@ void MainWidget::create_folder(QString path_dir, int index_tab)
     {
         index = tbl2->model()->index(0, 1);
     }
-    str = index.data().toString();
-    qDebug() << str << index;
-    if (!dir.exists(str))
+    if (!dir.exists(index.data().toString()))
     {
-        dir.mkdir(str);
+        dir.mkdir(index.data().toString());
+        cntDb.settings->setValue("last_dir/last_dir", index.data().toString());
+        dest_dir =  cntDb.settings->value("last_dir/last_dir").toString();
+        qInfo(logInfo()) << "Create directory " << index.data().toString() << " to " << path_dir;
     }
 }
 
 QString MainWidget::name_file()
 {
-    QString name_file = QFileDialog::getOpenFileName();
-    QFile file(name_file);
+    filename = QFileDialog::getOpenFileName();
+    QFile file(filename);
+    qInfo(logInfo()) << filename;
     QFileInfo inf(file);
     QModelIndex index = srtbl1->index(srtbl1->rowCount() - 1, 4);
-    qDebug() << inf.isFile() << inf.fileName();
-    qDebug() << tbl1->model()->data(index);
+    qInfo(logInfo()) << inf.isFile() << inf.fileName();
     tbl1->model()->setData(index, inf.fileName());
-    return name_file;
+    return filename;
+}
+
+void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QTextStream out(m_logFile.data());
+    out << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ");
+
+    switch(type)
+    {
+    case QtInfoMsg:            out << "INF"; break;
+    case QtDebugMsg:        out << "DBG"; break;
+    case QtWarningMsg:     out << "WRN"; break;
+    case QtCriticalMsg:       out << "CRT"; break;
+    case QtFatalMsg:          out << "FTL"; break;
+    }
+
+    out << context.category << ": " << msg << endl;
+    out.flush();
 }
 
 MainWidget::~MainWidget()

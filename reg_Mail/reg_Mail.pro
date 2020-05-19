@@ -17,14 +17,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connectdatabase.cpp \
+    loggingcategories.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connectdatabase.h \
+    loggingcategories.h \
     mainwindow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES +=
+
+DISTFILES +=
+
+RC_ICONS = mail.ico
+
+win32:{
+          VERSION = 1.0.0
+          QMAKE_TARGET_COPYRIGHT = Storozhok A.A.
+}
