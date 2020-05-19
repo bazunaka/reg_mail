@@ -62,21 +62,6 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     cntDb.db_host = cntDb.settings->value("db_connect/db_host").toString();
     cntDb.db_name = cntDb.settings->value("db_connect/db_name").toString();
     cntDb.db_user = cntDb.settings->value("db_connect/db_user").toString();
-<<<<<<< HEAD
-    cntDb.db_password = cntDb.settings->value("ftp_connect/ftp_host").toString();*/
-
-    //path_dir = settings->value("ftp_connect/ftp_host").toString();
-
-    /*cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,  cntDb.db_name,
-                    cntDb.db_user, cntDb.db_password);*/
-
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName(db_host);
-    //db.setDatabaseName("DRIVER={" + db_drv_string + "};DATABASE=" + db_name + ";");
-    db.setUserName(db_user);
-    db.setPassword(db_password);
-    qDebug() << db;
-=======
     cntDb.db_password = cntDb.settings->value("db_connect/db_password").toString();
 
     path_dir = cntDb.settings->value("ftp_connect/ftp_host").toString();
@@ -88,7 +73,6 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     qDebug(logDebug()) << "String database connection" << db;
     qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;
 
->>>>>>> b0832f76e5b12dc6fbb348793eb1fc5467d354fe
     if (db.open())
         {
             st_bar->showMessage("Подключение успешно!");
