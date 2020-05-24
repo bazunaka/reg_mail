@@ -1,0 +1,23 @@
+2020-05-24 02:06:08 WRNdefault: QSqlDatabase:  driver not loaded
+2020-05-24 02:06:08 WRNdefault: QSqlDatabase: available drivers: QSQLITE QMYSQL QMYSQL3 QODBC QODBC3 QPSQL QPSQL7
+2020-05-24 02:06:08 DBGDebug: String database connection QSqlDatabase(invalid)
+2020-05-24 02:06:08 INFInfo: Start parametrs: path_dir =  "" and dest_dir =  ""
+2020-05-24 02:06:08 CRTCritical: QSqlError("", "Driver not loaded", "Driver not loaded")
+2020-05-24 02:08:58 WRNdefault: QSqlDatabase: QMYSQL driver not loaded
+2020-05-24 02:08:58 WRNdefault: QSqlDatabase: available drivers: QSQLITE QMYSQL QMYSQL3 QODBC QODBC3 QPSQL QPSQL7
+2020-05-24 02:08:58 CRTCritical: QSqlError("", "Driver not loaded", "Driver not loaded")
+2020-05-24 02:10:00 WRNdefault: QSqlDatabase: QMYSQL driver not loaded
+2020-05-24 02:10:00 WRNdefault: QSqlDatabase: available drivers: QSQLITE QMYSQL QMYSQL3 QODBC QODBC3 QPSQL QPSQL7
+2020-05-24 02:10:00 DBGdefault: QSqlError("", "Driver not loaded", "Driver not loaded")
+2020-05-24 02:10:24 WRNdefault: QFile::copy: Empty or null file name
+2020-05-24 02:10:24 WRNdefault: QDir::exists: Empty or null file name
+2020-05-24 02:10:24 WRNdefault: QDir::mkdir: Empty or null file name
+2020-05-24 02:10:24 INFInfo: Create directory  ""  to  ""
+2020-05-24 02:10:24 INFInfo: Source file  "" Destination file  "/"
+2020-05-24 02:10:24 INFInfo: submit for  0  tab
+2020-05-24 02:10:25 WRNdefault: QFile::copy: Empty or null file name
+2020-05-24 02:10:25 WRNdefault: QDir::exists: Empty or null file name
+2020-05-24 02:10:25 WRNdefault: QDir::mkdir: Empty or null file name
+2020-05-24 02:10:25 INFInfo: Create directory  ""  to  ""
+2020-05-24 02:10:25 INFInfo: Source file  "" Destination file  "/"
+2020-05-24 02:10:25 INFInfo: submit for  0  tab

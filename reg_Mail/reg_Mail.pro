@@ -41,3 +41,8 @@ win32:{
           VERSION = 1.0.0
           QMAKE_TARGET_COPYRIGHT = Storozhok A.A.
 }
+
+unix|win32: LIBS += -L$$PWD/../../../../../../usr/local/mysql-8.0.20-macos10.15-x86_64/lib/ -lmysqlclient.21
+
+INCLUDEPATH += $$PWD/../../../../../../usr/local/mysql-8.0.20-macos10.15-x86_64/include
+DEPENDPATH += $$PWD/../../../../../../usr/local/mysql-8.0.20-macos10.15-x86_64/include

@@ -1,0 +1,5 @@
+2020-05-24 02:05:05 WRNdefault: QSqlDatabase:  driver not loaded
+2020-05-24 02:05:05 WRNdefault: QSqlDatabase: available drivers: QSQLITE QMYSQL QMYSQL3 QODBC QODBC3 QPSQL QPSQL7
+2020-05-24 02:05:05 DBGDebug: String database connection QSqlDatabase(invalid)
+2020-05-24 02:05:05 INFInfo: Start parametrs: path_dir =  "" and dest_dir =  ""
+2020-05-24 02:05:05 CRTCritical: QSqlError("", "Driver not loaded", "Driver not loaded")

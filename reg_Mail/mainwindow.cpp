@@ -6,7 +6,7 @@ QString path_dir, filename, dest_dir;
 ConnectDatabase cntDb;
 QScopedPointer<QFile> m_logFile;
 
-void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+//void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 {
@@ -26,7 +26,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     m_logFile.reset(new QFile(path_dir + "logFile.txt"));
     m_logFile.data()->open(QFile::Append | QFile::Text);
-    qInstallMessageHandler(messageHandler);
+    //qInstallMessageHandler(messageHandler);
 
     add_record    = pmnu1->addAction("Добавить строку");
     delete_record = pmnu1->addAction("Удалить запись");
@@ -67,18 +67,25 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     path_dir = cntDb.settings->value("ftp_connect/ftp_host").toString();
     dest_dir = cntDb.settings->value("last_dir/last_dir").toString();
 
-    QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
+    /*QSqlDatabase db = cntDb.connectDB(cntDb.db_driver, cntDb.db_host, cntDb.db_driver_string,
                                       cntDb.db_name,  cntDb.db_user, cntDb.db_password);
 
     qDebug(logDebug()) << "String database connection" << db;
-    qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;
+    qInfo(logInfo()) << "Start parametrs: path_dir = " << path_dir << "and dest_dir = " << dest_dir;*/
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("localhost");
+    db.setDatabaseName("baz_mail");
+    db.setUserName("reg_mail");
+    db.setPassword("bazunaka!");
 
     if (db.open())
         {
             st_bar->showMessage("Подключение успешно!");
         } else {
             st_bar->showMessage("Ошибка подключения!"); //реализовать вывод самой ошибки
-            qCritical(logCritical()) << db.lastError();
+            //qCritical(logCritical()) << db.lastError();
+            qDebug() << db.lastError();
         }
 
     QStringList lst = db.tables();
@@ -260,7 +267,7 @@ QString MainWidget::name_file()
     return filename;
 }
 
-void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+/*void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QTextStream out(m_logFile.data());
     out << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ");
@@ -276,7 +283,7 @@ void messageHandler(QtMsgType type, const QMessageLogContext &context, const QSt
 
     out << context.category << ": " << msg << endl;
     out.flush();
-}
+}*/
 
 MainWidget::~MainWidget()
 {

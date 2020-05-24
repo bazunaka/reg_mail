@@ -8,3 +8,6 @@
 2020-05-17 12:08:45 INFInfo: Tables into database "directory"
 2020-05-17 12:08:45 INFInfo: Tables into database "received_mail"
 2020-05-17 12:08:45 INFInfo: Tables into database "send_mail"
+2020-05-21 19:07:48 DBGDebug: String database connection QSqlDatabase(driver="QODBC", database="DRIVER={MySQL ODBC 8.0 Unicode Driver};DATABASE=baz_mail;", host="localhost", port=-1, user="root", open=false)
+2020-05-21 19:07:48 INFInfo: Start parametrs: path_dir =  "C:/Users/bazunaka/Documents/testmail" and dest_dir =  "2000-01-04"
+2020-05-21 19:07:48 CRTCritical: QSqlError("0", "QODBC3: Unable to connect", "[Microsoft][Диспетчер драйверов ODBC] Источник данных не найден и не указан драйвер, используемый по умолчанию")
